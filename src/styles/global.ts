@@ -1,7 +1,9 @@
 // Core dependencies
 import { createGlobalStyle } from 'styled-components';
 
-export default createGlobalStyle`
+import { themeProps } from './theme';
+
+export default createGlobalStyle<themeProps>`
   * {
     margin: 0;
     padding: 0;
@@ -13,8 +15,10 @@ export default createGlobalStyle`
   }
 
   body {
+
+    background-color: ${({ theme }) => theme.colors.DARK_400};
+
     * {
-      background-color: 'red';
       letter-spacing: 0%;
       text-decoration: none;
       padding: 0;

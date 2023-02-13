@@ -1,17 +1,19 @@
 // Core dependencies
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { ThemeProvider } from 'styled-components';
 
 // Styling related imports
 import GlobalStyles from './styles/global';
-import { theme } from './styles/theme';
+import { ThemeProvider } from 'styled-components';
 
 // Custom hooks
 import { AuthProvider } from './hooks/auth';
 
 // Custom routes
 import { Routes } from './routes';
+
+// Styling related imports
+import { theme } from './styles/theme';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
