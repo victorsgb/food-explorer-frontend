@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.button`
-  padding: 1.2rem 3.2rem;
+  padding: 1.2rem 3%;
   margin: 3% auto;
   border-radius: 5px;
   width: 100%;
@@ -13,7 +13,9 @@ export const Container = styled.button`
 
   border: 2px solid transparent;
 
-  transition: all 400ms;
+  transition: background-color 400ms;
+  transition: color 400ms;
+  transition: border-color 400ms;
 
   &:enabled {
 

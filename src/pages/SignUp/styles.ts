@@ -7,7 +7,6 @@ export const Container = styled.div`
   align-items: center;
 
   margin: 0 auto;
-  padding: 0 6.4rem;
   height: 100vh;
 
   header {
@@ -20,8 +19,14 @@ export const Container = styled.div`
     margin-top: 15.8rem;
     margin-bottom: 7.3rem;
 
+    img {
+      width: clamp(1.2rem, 5vw, 4.2rem);
+    }
+
     h1 {
+      white-space: nowrap;
       color: ${({ theme }) => theme.light[100]};
+      font-size: clamp(1.2rem, 5vw, 4.2rem);
     }
   }
 
@@ -43,6 +48,7 @@ export const Container = styled.div`
     h1 {
       opacity: 0;
       height: 0;
+      white-space: nowrap;
     }
 
     a {
@@ -50,20 +56,8 @@ export const Container = styled.div`
     }
 
     div.input, button, a {
-      animation: down-top 1s forwards;
+      transform: translateY(-6.4rem);
     }
-
-    @keyframes down-top {
-      0% {
-        transform: translateY(0rem);
-      }
-
-      100% {
-        transform: translateY(-6.4rem);
-      }
-    }
-
-    transition: all 400ms;
 
     @media (min-width: 650px) {
 
@@ -71,36 +65,11 @@ export const Container = styled.div`
 
       h1 {
         color: ${({ theme }) => theme.light[100]};
-
-        animation: appear 1s forwards 0.5s;
-
-        @keyframes appear {
-          0% {
-            opacity: 0;
-          }
-
-          50% {
-          }
-
-          100% {
-            opacity: 1;
-          }
-        }
+        opacity: 1;
       }
 
       div.input, button, a {
-
-        animation: top-down 1s forwards;
-
-        @keyframes top-down {
-          0% {
-            transform: translateY(-6.4rem);
-          }
-
-          100% {
-            transform: translateY(0rem);
-          }
-        }       
+        transform: translateY(3.2rem);
       }
     }
   }
@@ -108,11 +77,13 @@ export const Container = styled.div`
   @media (min-width: 650px) {
 
     height: 100vh;
+    margin: 0 7%;
 
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    gap: 8px;
 
     header {
       transform: translateY(-12.0rem);

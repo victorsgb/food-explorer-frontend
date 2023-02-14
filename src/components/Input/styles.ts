@@ -14,7 +14,7 @@ export const Container = styled.div`
 
   input {
     width: 100%;
-    padding: 1.4rem 1.6rem;
+    padding: 1.6rem 5%;
     border: none;
     border-radius: 8px;
     background-color: ${({ theme }) => theme.dark[900]};
