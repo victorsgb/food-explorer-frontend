@@ -3,35 +3,44 @@ import 'styled-components';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
-    colors: {
-      LIGHT_100: string;
-      LIGHT_200: string;
-      LIGHT_300: string;
-      LIGHT_400: string;
-      LIGHT_500: string;
-      LIGHT_600: string;
-      LIGHT_700: string;
-
-      DARK_100: string;
-      DARK_200: string;
-      DARK_300: string;
-      DARK_400: string;
-      DARK_500: string;
-      DARK_600: string;
-      DARK_700: string;
-      DARK_800: string;
-      DARK_900: string;
-      DARK_1000: string;
-
-      TOMATO_100: string;
-      TOMATO_200: string;
-      TOMATO_300: string;
-      TOMATO_400: string;
-
-      CARROT_100: string;
-      MINT_100: string;
-      CAKE_100: string;
-      CAKE_200: string;
+    light: {
+      100: string;
+      200: string;
+      300: string;
+      400: string;
+      500: string;
+      600: string;
+      700: string;
+    },
+    dark: {
+      100: string;
+      200: string;
+      300: string;
+      400: string;
+      500: string;
+      600: string;
+      700: string;
+      800: string;
+      900: string;
+      1000: string;
+    },
+    tints: {
+      tomato: {
+        100: string;
+        200: string;
+        300: string;
+        400: string;
+      },
+      carrot: {
+        100: string;
+      },
+      mint: {
+        100: string;
+      },
+      cake: {
+        100: string;
+        200: string;
+      }
     }
   }
 }

@@ -16,7 +16,7 @@ export default createGlobalStyle<themeProps>`
 
   body {
 
-    background-color: ${({ theme }) => theme.colors.DARK_400};
+    background-color: ${({ theme }) => theme.dark[400]};
 
     * {
       letter-spacing: 0%;

@@ -17,13 +17,13 @@ export const Container = styled.button`
 
   &:enabled {
 
-    color: ${({ theme }) => theme.colors.LIGHT_100};
-    background-color: ${({ theme }) => theme.colors.TOMATO_100};
+    color: ${({ theme }) => theme.light[100]};
+    background-color: ${({ theme }) => theme.tints.tomato[100]};
     
     &:hover, &:focus {
-      color: ${({ theme }) => theme.colors.TOMATO_100};
-      background-color: ${({ theme }) => theme.colors.LIGHT_100};
-      border-color: ${({ theme }) => theme.colors.TOMATO_100};
+      color: ${({ theme }) => theme.tints.tomato[100]};
+      background-color: ${({ theme }) => theme.light[100]};
+      border-color: ${({ theme }) => theme.tints.tomato[100]};
     }
   }
 

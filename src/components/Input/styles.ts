@@ -9,7 +9,7 @@ export const Container = styled.div`
   gap: 8px;
 
   label {
-    color: ${({ theme }) => theme.colors.LIGHT_400};
+    color: ${({ theme }) => theme.light[400]};
   }
 
   input {
@@ -17,10 +17,10 @@ export const Container = styled.div`
     padding: 1.4rem 1.6rem;
     border: none;
     border-radius: 8px;
-    background-color: ${({ theme }) => theme.colors.DARK_900};
+    background-color: ${({ theme }) => theme.dark[900]};
 
     &::placeholder {
-      color: ${({ theme }) => theme.colors.LIGHT_500};
+      color: ${({ theme }) => theme.light[500]};
     }
   }
 `;

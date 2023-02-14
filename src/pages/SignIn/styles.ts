@@ -21,7 +21,7 @@ export const Container = styled.div`
     margin-bottom: 7.3rem;
 
     h1 {
-      color: ${({ theme }) => theme.colors.LIGHT_100};
+      color: ${({ theme }) => theme.light[100]};
     }
   }
 
@@ -46,7 +46,7 @@ export const Container = styled.div`
     }
 
     a {
-      color: ${({ theme }) => theme.colors.LIGHT_100};
+      color: ${({ theme }) => theme.light[100]};
     }
 
     div.input, button, a {
@@ -67,10 +67,10 @@ export const Container = styled.div`
 
     @media (min-width: 650px) {
 
-      background-color: ${({ theme }) => theme.colors.DARK_700};
+      background-color: ${({ theme }) => theme.dark[700]};
 
       h1 {
-        color: ${({ theme }) => theme.colors.LIGHT_100};
+        color: ${({ theme }) => theme.light[100]};
 
         animation: appear 1s forwards 0.5s;
 
