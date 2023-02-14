@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 // Custom components and hooks
+import { Logo } from '../../components/Logo';
 import { Warning } from '../../components/Warning';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
@@ -10,7 +11,6 @@ import { useAuth } from '../../hooks/auth';
 
 // Styling related imports
 import { Container } from './styles';
-import { polygon } from '../../assets';
 
 // Type related imports
 import { SignInProps } from '../../hooks/auth';
@@ -72,13 +72,7 @@ export function SignIn(){
 
   return (
     <Container>
-      <header>
-        <img src={polygon}
-          alt='Logotipo do FoodExplorer' />
-        <h1 className='roboto-giant-bold'>
-          food explorer
-        </h1>
-      </header>
+      <header><Logo /></header>
       <form onSubmit={handleSignIn}>
         <h1 className='poppins-medium-400'>Faça login</h1>
         <Input type='email'
@@ -89,7 +83,9 @@ export function SignIn(){
           label='Senha'
           placeholder='No mínimo 6 caracteres'
           onChange={handlePasswordChange} />
-        <Button disabled={!isReady}
+        <Button disabled={ !isReady ||
+          (credentials?.password && credentials.password.length < 6)
+        }
           isLoading={isLoading} >
           <span className='poppins-medium-100'>Entrar</span>
         </Button>

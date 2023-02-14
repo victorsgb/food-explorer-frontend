@@ -11,23 +11,8 @@ export const Container = styled.div`
   overflow-y: auto;
 
   header {
-    width: fit-content;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.1rem;
-
-    margin-top: 15.8rem;
-    margin-bottom: 7.3rem;
-
-    img {
-      width: clamp(1.2rem, 5vw, 4.2rem);
-    }
-
-    h1 {
-      white-space: nowrap;
-      color: ${({ theme }) => theme.light[100]};
-      font-size: clamp(1.2rem, 5vw, 4.2rem);
+    div {
+      margin-top: 15.8rem;
     }
   }
 
@@ -36,7 +21,7 @@ export const Container = styled.div`
     height: fit-content;
     width: 80%;
     max-width: 47.6rem;
-    padding: 6.4rem;
+    padding: 3%;
 
     display: flex;
     flex-direction: column;
@@ -52,16 +37,8 @@ export const Container = styled.div`
       white-space: nowrap;
     }
 
-    h3 {
-      color: white;
-    }
-
     a {
       color: ${({ theme }) => theme.light[100]};
-    }
-
-    div.input, button, a {
-      transform: translateY(-6.4rem);
     }
 
     @media (min-width: 650px) {
@@ -74,7 +51,7 @@ export const Container = styled.div`
       }
 
       div.input, button, a {
-        transform: translateY(3.2rem);
+        transform: translateY(1.0rem);
       }
     }
   }

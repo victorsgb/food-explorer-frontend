@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 // Custom components
+import { Logo } from '../../components/Logo';
 import { Warning } from '../../components/Warning';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
@@ -122,13 +123,7 @@ export function SignUp(){
 
   return (
     <Container>
-      <header>
-        <img src={polygon}
-          alt='Logotipo do FoodExplorer' />
-        <h1 className='roboto-giant-bold'>
-          food explorer
-        </h1>
-      </header>
+      <header><Logo /></header>
       <form onSubmit={handleCreateNewUser}>
         <h1 className='poppins-medium-400'>Crie sua conta</h1>
         <Input type='name'

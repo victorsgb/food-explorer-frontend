@@ -129,4 +129,40 @@ export default createGlobalStyle<themeProps>`
       };
     }
   }
+
+  /* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: ${({ theme }) => theme.tints.cake[100]} none;
+  }
+  
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 12px;
+    cursor: pointer;
+
+    transition: all 400ms;
+
+    &:hover {
+      background-color: ${({ theme }) => theme.tints.cake[200]};
+    }
+  }
+  
+  *::-webkit-scrollbar-track {
+    background-color: ${({ theme }) => theme.dark[1000]};
+    cursor: pointer;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.tints.cake[100]};
+    border-radius: 5px;
+    cursor: pointer;
+
+    transition: all 400ms;
+
+    &:hover {
+      background-color: ${({ theme }) => theme.light[100]};
+    }
+  }
 `;
