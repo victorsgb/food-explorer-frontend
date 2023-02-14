@@ -19,7 +19,6 @@ export function Home(){
               <p className='roboto-small-regular'>Sinta o cuidado do preparo com ingredientes selecionados</p>
             </div>
           </div>
-
         </main>
         <Footer />
       </Content>

@@ -1,3 +1,6 @@
+// Core dependencies
+import { useNavigate } from 'react-router-dom';
+
 // Custom components and hooks
 import { Logo } from '../Logo';
 import { Input } from '../Input';
@@ -13,6 +16,12 @@ export function Header() {
 
   const { user, signOut } = useAuth();
 
+  const navigate = useNavigate();
+
+  function handleSignOut() {
+    navigate('/');
+    signOut();
+  }
 
   return (
     <Container>
@@ -27,7 +36,8 @@ export function Header() {
           <img src={order} alt='Ícone de pedidos' />
           <span className='poppins-medium-100'>Pedidos (0)</span>
         </Button>
-        <FiLogOut size={22} color='#fff' />
+        <FiLogOut onClick={handleSignOut} 
+          size={22} color='#fff' />
       </div>
     </Container>
   );

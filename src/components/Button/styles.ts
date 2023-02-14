@@ -13,19 +13,17 @@ export const Container = styled.button`
 
   border: 2px solid transparent;
 
-  transition: background-color 400ms;
-  transition: color 400ms;
-  transition: border-color 400ms;
+  transition: background-color 200ms;
 
   &:enabled {
-
+    
     color: ${({ theme }) => theme.light[100]};
     background-color: ${({ theme }) => theme.tints.tomato[100]};
-    
+        
     &:hover, &:focus {
-      color: ${({ theme }) => theme.tints.tomato[100]};
-      background-color: ${({ theme }) => theme.light[100]};
-      border-color: ${({ theme }) => theme.tints.tomato[100]};
+      
+      background-color: ${({ theme }) => theme.tints.tomato[400]};
+
     }
   }
 

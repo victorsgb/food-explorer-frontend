@@ -24,25 +24,26 @@ export const Container = styled.div`
   div.left-elements {
     min-width: 60.0rem;
     gap: 4.3rem;
+
+    div.logo {
+      * {
+        font-size: 2.4rem;
+        line-height: 'auto';
+      }
+    }
   }
 
   div.right-elements {
     min-width: 20.0rem;
     gap: 3.2rem;
-  }
-
-  div.logo {
-    * {
-      font-size: 2.4rem;
-      line-height: 'auto';
+    
+    button {
+      max-width: 21.6rem;
     }
-  }
-
-  button {
-    max-width: 21.6rem;
-  }
-
-  svg {
-    width: fit-content;
+  
+    svg {
+      width: fit-content;
+      cursor: pointer;
+    }
   }
 `;
