@@ -1,4 +1,4 @@
-// Custom components
+// Custom components and hooks
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 
@@ -7,6 +7,7 @@ import { Container, Content } from './styles';
 import { picture } from '../../assets';
 
 export function Home(){
+
   return (
     <Container>
       <Header />

@@ -18,6 +18,14 @@ export function Header() {
 
   const navigate = useNavigate();
 
+  function navigateToNewDishPage() {
+    alert('Página de novo prato!');
+  }
+
+  function navigateToViewOrdersPage() {
+    alert('Página de pedidos!');
+  }
+
   function handleSignOut() {
     navigate('/');
     signOut();
@@ -32,9 +40,15 @@ export function Header() {
           placeholder='Busque por pratos ou ingredientes' />
       </div>
       <div className='right-elements'>
-        <Button>
-          <img src={order} alt='Ícone de pedidos' />
-          <span className='poppins-medium-100'>Pedidos (0)</span>
+        <Button onClick={ user?.admin
+          ? navigateToNewDishPage
+          : navigateToViewOrdersPage
+        }>
+          { !user?.admin && 
+            <img src={order} alt='Ícone de pedidos' /> }
+          <span className='poppins-medium-100'>
+            {user?.admin ? 'Novo prato' : 'Pedidos (0)'}
+          </span>
         </Button>
         <FiLogOut onClick={handleSignOut} 
           size={22} color='#fff' />
