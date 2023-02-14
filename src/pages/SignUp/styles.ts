@@ -8,6 +8,7 @@ export const Container = styled.div`
 
   margin: 0 auto;
   height: 100vh;
+  overflow-y: auto;
 
   header {
     width: fit-content;
@@ -49,6 +50,10 @@ export const Container = styled.div`
       opacity: 0;
       height: 0;
       white-space: nowrap;
+    }
+
+    h3 {
+      color: white;
     }
 
     a {

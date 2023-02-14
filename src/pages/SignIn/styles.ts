@@ -8,6 +8,7 @@ export const Container = styled.div`
 
   margin: 0 auto;
   height: 100vh;
+  overflow-y: auto;
 
   header {
     width: fit-content;
@@ -20,7 +21,7 @@ export const Container = styled.div`
     margin-bottom: 7.3rem;
 
     img {
-      width: clamp(1.2rem, 5vw, 4.2rem);
+      width: clamp(1.2rem, 8vw, 4.2rem);
     }
 
     h1 {
@@ -35,7 +36,7 @@ export const Container = styled.div`
     height: fit-content;
     width: 80%;
     max-width: 47.6rem;
-    padding: 6.4rem;
+    padding: 3%;
 
     display: flex;
     flex-direction: column;
@@ -55,10 +56,6 @@ export const Container = styled.div`
       color: ${({ theme }) => theme.light[100]};
     }
 
-    div.input, button, a {
-      transform: translateY(-6.4rem);
-    }
-
     @media (min-width: 650px) {
 
       background-color: ${({ theme }) => theme.dark[700]};
@@ -69,7 +66,7 @@ export const Container = styled.div`
       }
 
       div.input, button, a {
-        transform: translateY(3.2rem);
+        transform: translateY(1.0rem);
       }
     }
   }

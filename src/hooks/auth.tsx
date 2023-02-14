@@ -8,9 +8,9 @@ import { api } from '../services/api';
 // Custom components
 import { SignOutModal } from '../components/SignOutModal';
 
-interface SignInProps {
-  email: string;
-  password: string;
+export interface SignInProps {
+  email?: string;
+  password?: string;
 }
 
 interface dataProps {
@@ -63,7 +63,10 @@ function AuthProvider({ children }: any): JSX.Element {
       setData({ user, token });
       setUserLoggedIn(true);
 
+      return 'Logado com sucesso';
+
     } catch(error: any) {
+
       if (error.response) {
         return error.response.data.message; 
 
