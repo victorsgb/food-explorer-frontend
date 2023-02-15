@@ -19,7 +19,7 @@ export function Header() {
   const navigate = useNavigate();
 
   function navigateToNewDishPage() {
-    alert('Página de novo prato!');
+    navigate('/dish-new');
   }
 
   function navigateToViewOrdersPage() {
