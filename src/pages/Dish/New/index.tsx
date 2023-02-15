@@ -20,8 +20,9 @@ import { Footer } from '../../../components/Footer';
 import { Container, Content } from './styles';
 import { FiChevronLeft, FiChevronDown, FiUpload, FiCheck } from 'react-icons/fi';
 
-interface DishProps {
+export interface DishProps {
   category?: string;
+  category_id?: string;
   dish?: string;
   cost?: string;
   description?: string;
@@ -35,7 +36,6 @@ export function DishNew(){
 
   const [dishData, setDishData] = useState<DishProps>({});
 
-  // to store new files that the user might want to upload
   const [dishImage, setDishImage] = useState<Blob>();
 
   const [dishImageIssue, setDishImageIssue] = useState<boolean>(false);
@@ -133,8 +133,6 @@ export function DishNew(){
       fileUploadForm.append('image', dishImage as Blob);
 
       try {
-
-        console.log({ ingredients });
 
         await api.post(`/dishes?category=${dishData.category}&dish=${dishData.dish}&ingredients=${ingredients}&cost=${dishData.cost}&description=${dishData.description}`, fileUploadForm );
 

@@ -20,10 +20,10 @@ export const Content = styled.div`
 
   main {
     min-height: 100vh;
+    margin: 16.4rem 6.4rem 4.6rem;
     
     div.banner {
       max-height: 26.0rem;
-      margin: 16.4rem 6.4rem 6.3rem;
       border-radius: 8px;
       background: linear-gradient(180deg, #091E26 0%, #00131C 100%);
   

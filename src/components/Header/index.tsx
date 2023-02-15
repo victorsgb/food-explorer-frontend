@@ -34,7 +34,7 @@ export function Header() {
   return (
     <Container>
       <div className='left-elements'>
-        <Logo />
+        <Logo showAdmin={true} />
         <Input type='name'
           icon={FiSearch}
           placeholder='Busque por pratos ou ingredientes' />
