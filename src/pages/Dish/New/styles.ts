@@ -38,6 +38,7 @@ export const Content = styled.div`
 
     h1 {
       color: ${({ theme }) => theme.light[300]};
+      margin-bottom: 3.2rem;
     }
 
     form {
@@ -46,7 +47,7 @@ export const Content = styled.div`
       grid-template-areas:
         'file name select select'
         'ingredients ingredients ingredients money'
-        'multiline multiline multiline multiline'
+        'description description description description'
         'buttons buttons buttons buttons';
       gap: 3.2rem;
 
@@ -56,7 +57,7 @@ export const Content = styled.div`
       div#name {
         grid-area: name;
       }
-      div#select {
+      div.select {
         grid-area: select;
       }
       div#ingredients {
@@ -66,13 +67,26 @@ export const Content = styled.div`
       div#money {
         grid-area: money;
       }
-      div#multiline {
-        grid-area: multiline;
+      div.textarea {
+        grid-area: description;
       }
       div.buttons-wrapper {
         grid-area: buttons;
-        background-color: green;
-        height: 10.0rem;
+
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+
+        button {
+          max-width: 17.2rem;
+
+          span {
+            white-space: nowrap;
+          }
+        }
       }
     }
   }

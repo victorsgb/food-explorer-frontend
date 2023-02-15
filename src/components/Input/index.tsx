@@ -4,15 +4,15 @@ import { Container } from './styles';
 // Type imports
 import { IconType } from 'react-icons/lib';
 
-interface InputProps extends React.HTMLProps<HTMLInputElement>  {
-  type: 'name' | 'email' | 'password' | 'file' | 'select' | 'money' | 'multiline';
+interface InputProps extends React.HTMLProps<HTMLInputElement> {
+  type: 'name' | 'email' | 'password' |
+        'file' | 'money';
   label?: string;
   placeholder?: string;
   icon?: IconType;
-  options?: string[];
 }
 
-export function Input({ type, label, placeholder, icon: Icon, options, ...rest }: InputProps){
+export function Input({ type, label, placeholder, icon: Icon, ...rest }: InputProps){
 
   function handleFocusToImageInput() {
     if (document) {
@@ -103,16 +103,21 @@ export function Input({ type, label, placeholder, icon: Icon, options, ...rest }
     <Container id={type} className='input'>
       { label && 
         <label htmlFor={label}
-          className='roboto-small-regular' >{label}
+          className='roboto-small-regular' >
+          {label}
         </label> }
       <div className={`input-wrapper ${type}`}> 
         { type === 'file' && 
-            <label htmlFor='image' onFocus={handleFocusToImageInput}>
+            <label htmlFor='image' 
+              onFocus={handleFocusToImageInput} >
               { Icon && <Icon className='icon' size={32} /> }
-              <span className='poppins-medium-100'>Selecione uma imagem</span>
+              { placeholder && 
+                <span className='poppins-medium-100'>
+                  {placeholder}
+                </span> }
               <input id='image'
                 type={type}
-                title={label} />
+                title={label} {...rest} />
             </label> }
         { type === 'money' && 
           <input id='money-input'
@@ -121,28 +126,9 @@ export function Input({ type, label, placeholder, icon: Icon, options, ...rest }
           type='number'
           step='0.01'
           onFocus={handleMoneyInputOnFocus}
-          onBlur={handleMoneyInputOnBlur}          placeholder={placeholder} {...rest} />
-        }
-        { type === 'select' && 
-          <>
-            <select name={label}
-              id={label}
-              className='roboto-small-regular' >
-              {options && options.map((item, index) => (
-                <option value={index}>{item}</option>
-              ))}
-            </select>
-            { Icon && <Icon className='icon' size={32} /> }
-          </> }
-        { type === 'multiline' &&
-          <textarea name={label}
-            rows={50}
-            className='roboto-small-regular'
-            placeholder={placeholder} /> }
-        { (type !== 'file' &&
-          type !== 'select' &&
-          type !== 'money' && 
-          type !== 'multiline') &&
+          onBlur={handleMoneyInputOnBlur}
+          placeholder={placeholder} {...rest} /> }
+        { (type !== 'file' && type !== 'money') &&
           <>
             { Icon && <Icon className='icon' size={22} />}
             <input name={label}

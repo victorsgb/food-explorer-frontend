@@ -13,7 +13,7 @@ export const Container = styled.div`
     white-space: nowrap;
   }
 
-  div.input-wrapper {
+  div.select-wrapper {
 
     display: flex;
     align-items: center;
@@ -32,13 +32,17 @@ export const Container = styled.div`
       color: ${({ theme }) => theme.light[400]};
     }
 
-    input {
-  
+    select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      -o-appearance: none;
+      appearance: none;
+
       border: none;
       background-color: transparent;
       width: 100%;
 
-      color: ${({ theme }) => theme.light[100]};
+      color: ${({ theme }) => theme.light[500]};
   
       &::placeholder {
         color: ${({ theme }) => theme.light[500]};
@@ -46,6 +50,10 @@ export const Container = styled.div`
 
       &:focus {
         outline: none;
+      }
+
+      option {
+        color: ${({ theme }) => theme.dark[100]};
       }
     }
 
@@ -64,17 +72,6 @@ export const Container = styled.div`
 
         @media (max-width: 750px)  {
           display: none;
-        }
-      }
-
-      input {
-        width: 0;
-        background-color: red;
-        &[type='file'] {
-          color: transparent;
-          &::-webkit-file-upload-button {
-            visibility: hidden;
-          }
         }
       }
     }
