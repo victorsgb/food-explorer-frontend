@@ -12,9 +12,9 @@ export const Container = styled.div`
     color: ${({ theme }) => theme.light[400]};
     white-space: nowrap;
   }
-
-  div.select-wrapper {
-
+  
+  div.tags-wrapper {
+    
     display: flex;
     align-items: center;
     gap: 1.6rem;
@@ -26,23 +26,20 @@ export const Container = styled.div`
     border-radius: 8px;
     background-color: ${({ theme }) => theme.dark[800]};
 
-    overflow-y: auto;
+    overflow-y: hidden;
+    overflow-x: auto;
 
     svg.icon {
       color: ${({ theme }) => theme.light[400]};
     }
 
-    select {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      -o-appearance: none;
-      appearance: none;
-
+    input {
+  
       border: none;
       background-color: transparent;
       width: 100%;
 
-      color: ${({ theme }) => theme.light[500]};
+      color: ${({ theme }) => theme.light[100]};
   
       &::placeholder {
         color: ${({ theme }) => theme.light[500]};
@@ -50,10 +47,6 @@ export const Container = styled.div`
 
       &:focus {
         outline: none;
-      }
-
-      option {
-        color: ${({ theme }) => theme.dark[100]};
       }
     }
 
@@ -68,10 +61,13 @@ export const Container = styled.div`
         color: ${({ theme }) => theme.light[100]};
       }
 
-      span {
-
-        @media (max-width: 750px)  {
-          display: none;
+      input {
+        width: 0;
+        &[type='file'] {
+          color: transparent;
+          &::-webkit-file-upload-button {
+            visibility: hidden;
+          }
         }
       }
     }
@@ -84,5 +80,38 @@ export const Container = styled.div`
       outline: 2px solid ${({ theme }) => theme.light[100]}
     }
 
+  }
+`;
+
+export const Content = styled.div`
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 1.2rem;
+  border-radius: 8px;
+ 
+  &.item {
+    border: 1px solid transparent;
+    background-color: ${({ theme }) => theme.light[600]};
+    
+    * {
+      color: ${({ theme }) => theme.light[100]};
+    }
+  }
+  
+  &.new {
+    min-width: 12.0rem;
+    max-width: 12.0rem;
+    border: 1px dashed ${({ theme }) => theme.light[500]};
+
+    * {
+    color: ${({ theme }) => theme.light[500]};      
+    }
+  }
+
+  svg {
+    cursor: pointer;
   }
 `;

@@ -24,7 +24,7 @@ export const Container = styled.div`
     padding: 0 5%;
     border: none;
     border-radius: 8px;
-    background-color: ${({ theme }) => theme.dark[900]};
+    background-color: ${({ theme }) => theme.dark[800]};
 
     overflow-y: auto;
 
@@ -60,16 +60,8 @@ export const Container = styled.div`
         color: ${({ theme }) => theme.light[100]};
       }
 
-      span {
-
-        @media (max-width: 750px)  {
-          display: none;
-        }
-      }
-
       input {
         width: 0;
-        background-color: red;
         &[type='file'] {
           color: transparent;
           &::-webkit-file-upload-button {

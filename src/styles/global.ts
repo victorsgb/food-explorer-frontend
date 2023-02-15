@@ -139,7 +139,8 @@ export default createGlobalStyle<themeProps>`
   
   /* Chrome, Edge, and Safari */
   *::-webkit-scrollbar {
-    width: 12px;
+    height: 8px;
+    width: 8px;
     cursor: pointer;
 
     transition: all 400ms;

@@ -15,7 +15,6 @@ export const Container = styled.dialog`
   border-bottom: 3px solid ${({ theme }) => theme.light[200]};
   border-radius: 5px;
   box-shadow: 0 0 1em rgb(0 0 0 /.3);
-  width: 80%;
 
   &::backdrop {
     background-color: rgb(0 0 0 /.5);
@@ -23,9 +22,13 @@ export const Container = styled.dialog`
 
   div.buttons-wrapper {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 
     button {
       margin: 3%;
+      max-width: 12.0rem;
     }
   }
 `;

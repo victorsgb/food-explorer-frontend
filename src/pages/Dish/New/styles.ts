@@ -42,51 +42,59 @@ export const Content = styled.div`
     }
 
     form {
-      display: grid;
-      grid-template-columns: 1fr 1fr 7.0rem 1fr;
-      grid-template-areas:
-        'file name select select'
-        'ingredients ingredients ingredients money'
-        'description description description description'
-        'buttons buttons buttons buttons';
+      
+      display: flex;
+      flex-direction: column;
       gap: 3.2rem;
+      margin-bottom: 5.3rem;
 
-      div#file {
-        grid-area: file;
-      }
-      div#name {
-        grid-area: name;
-      }
-      div.select {
-        grid-area: select;
-      }
-      div#ingredients {
-        grid-area: ingredients;
-        background-color: green;
-      }
-      div#money {
-        grid-area: money;
-      }
-      div.textarea {
-        grid-area: description;
-      }
-      div.buttons-wrapper {
-        grid-area: buttons;
+      @media (min-width: 650px) {
 
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        width: 100%;
-        margin: 0;
-        padding: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr 7.0rem 1fr;
+        grid-template-areas:
+          'file name select select'
+          'ingredients ingredients ingredients money'
+          'description description description description'
+          'buttons buttons buttons buttons';
+        gap: 3.2rem;
 
-        button {
-          max-width: 17.2rem;
-
-          span {
-            white-space: nowrap;
-          }
+        div#file {
+          grid-area: file;
         }
+        div#name {
+          grid-area: name;
+        }
+        div.select {
+          grid-area: select;
+        }
+        div.ingredients {
+          grid-area: ingredients;
+        }
+        div#money {
+          grid-area: money;
+        }
+        div.textarea {
+          grid-area: description;
+        }
+        div.buttons-wrapper {
+          grid-area: buttons;
+
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          width: 100%;
+          margin: 0;
+          padding: 0;
+
+          button {
+            max-width: 17.2rem;
+
+            span {
+              white-space: nowrap;
+            }
+          }
+        }       
       }
     }
   }

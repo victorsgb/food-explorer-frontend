@@ -23,16 +23,18 @@ interface SignUpProps {
 export function SignUp(){
 
   const navigate = useNavigate();
-
-  const [apiResponse, setApiResponse] = useState<string>();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
+ 
   const [userData, setUserData] = useState<SignUpProps>({});
   const [passwordIssue, setPasswordIssue] = useState<boolean>(false);
+  
   const [isReady, setIsReady] = useState<boolean>(false);
+  
   const [submitRequest, setSubmitRequest] = useState<boolean>(false);
-  const [successCounter, setSuccessCounter] = useState<number>(-1);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  const [successCounter, setSuccessCounter] = useState<number>(-1);
+  const [apiResponse, setApiResponse] = useState<string>();
+  
   function handleNameChange(event: any) {
     setUserData(userData => ({
       ...userData,

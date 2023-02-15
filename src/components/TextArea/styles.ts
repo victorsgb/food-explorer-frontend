@@ -23,7 +23,7 @@ export const Container = styled.div`
     width: 100%;
     border: none;
     border-radius: 8px;
-    background-color: ${({ theme }) => theme.dark[900]};
+    background-color: ${({ theme }) => theme.dark[800]};
 
     overflow-y: auto;
 
