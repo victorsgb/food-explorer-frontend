@@ -21,11 +21,15 @@ import { Container, Content } from './styles';
 import { FiChevronLeft, FiChevronDown, FiUpload, FiCheck } from 'react-icons/fi';
 
 export interface DishProps {
+  id?: string;
   category?: string;
   category_id?: string;
   dish?: string;
   cost?: string;
+  reais?: string;
+  cents?: string;
   description?: string;
+  image?: string;
 }
 
 export function DishNew(){
