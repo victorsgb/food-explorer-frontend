@@ -7,6 +7,7 @@ import { api } from '../../services/api';
 // Styling related imports
 import { Container, Content } from './styles';
 import { BsPencilSquare, BsHeart } from 'react-icons/bs';
+import { GoChevronRight } from 'react-icons/go';
 
 // Type imports
 import { DishProps } from '../../pages/Dish/New';
@@ -75,7 +76,6 @@ export function DishCard({ admin, dishData }: DishCardProps){
     if (id) navigate(`/dish-details/${id}`);
   }
 
-
   return (
     <Content>
       { admin
@@ -85,7 +85,7 @@ export function DishCard({ admin, dishData }: DishCardProps){
       <div className='details'
         onClick={() => navigateToDetailsPage(dishData.id)} >
         <img src={`${api.defaults.baseURL}/files/${dishData.image}`} alt='Imagem do prato' />
-        <h3 className='poppins-bold-300'>{dishData.dish}</h3>
+        <h3 className='poppins-bold-300'>{dishData.dish} <GoChevronRight /></h3>
         <p className='roboto-smaller-regular'>{dishData.description}</p>
         <h4 className='roboto-biggest-regular'>
           {formatReaisAndCentsToBRLString(dishData.reais, dishData.cents)}

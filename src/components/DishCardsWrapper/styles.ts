@@ -54,8 +54,16 @@ export const Content = styled.div`
     }
   
     h3 {
+
+      display: flex;
+      align-items: center;
+
       color: ${({ theme }) => theme.light[300]};
-      margin-bottom: 1.5rem;
+      * {
+        align-self: center;
+        padding: 0;
+        margin: 0;
+      }
     }
   
     p {
