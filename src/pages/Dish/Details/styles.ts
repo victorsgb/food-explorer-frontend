@@ -20,9 +20,10 @@ export const Content = styled.div`
 
   main {
     min-height: 100vh;
-    margin: 2.4rem 8% 5.54rem;
+    margin: 2.4rem 0 5.54rem;
+    padding: 0 8%;
 
-    border: 1px solid yellow;
+    width: 100%;
 
     a {
       display: flex;
@@ -62,8 +63,7 @@ export const Content = styled.div`
         flex-direction: column;
         gap: 2.4rem;
 
-        border: 1px solid green;
-        width: fit-content;
+        width: 90%;
         overflow: hidden;
 
         h1, h2 {
@@ -72,7 +72,8 @@ export const Content = styled.div`
 
         ul {
           list-style: none;
-          display: flex;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr 1fr;
           gap: 1.2rem;
 
           overflow-y: hidden;
@@ -88,11 +89,33 @@ export const Content = styled.div`
         }
 
         button {
-          max-width: 13.1rem;
+          @media (min-width: 650px) {
+            max-width: 13.1rem;
+          }
+        }
+        
+        div.order-wrapper {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 1.6rem;
+
+          svg {
+            color: ${({ theme }) => theme.light[100]};
+          }
+
+          span {
+            color: ${({ theme }) => theme.light[300]};
+          }
+
+          button {
+            margin-left: 1.9rem;
+            white-space: nowrap;
+          }
         }
 
         @media (max-width: 850px) {
-
+          
           h1, h2 {
             text-align: center;
           }

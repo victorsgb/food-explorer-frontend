@@ -1,12 +1,17 @@
 // Core dependencies
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // External services
 import { api } from '../../services/api';
 
+// Core components
+import { Button } from '../Button';
+
 // Styling related imports
 import { Container, Content } from './styles';
-import { BsPencilSquare, BsHeart } from 'react-icons/bs';
+import { pencil, heart } from '../../assets';
+import { BiMinus, BiPlus} from 'react-icons/bi';
 import { GoChevronRight } from 'react-icons/go';
 
 // Type imports
@@ -20,6 +25,7 @@ interface DishCardProps {
 export function DishCard({ admin, dishData }: DishCardProps){
 
   const navigate = useNavigate();
+  const [amount, setAmount] = useState<number>(1);
 
   function convertNumberToMoneyStr(value: string) {
 
@@ -76,21 +82,42 @@ export function DishCard({ admin, dishData }: DishCardProps){
     if (id) navigate(`/dish-details/${id}`);
   }
 
+  function handleReduceAmount() {
+    if (amount > 1) {
+      setAmount(amount - 1);
+    }
+  }
+
+  function handleIncreaseAmount() {
+    if (amount < 99) {
+      setAmount(amount + 1);
+    }
+  }
+
   return (
     <Content>
       { admin
-        ? <BsPencilSquare size={24}
+        ? <img className='icon' src={pencil} alt=''
           onClick={() => navigateToEditPage(dishData.id)} />
-        : <BsHeart size={24} /> }
+        : <img className='icon' src={heart} alt='' /> }
       <div className='details'
         onClick={() => navigateToDetailsPage(dishData.id)} >
         <img src={`${api.defaults.baseURL}/files/${dishData.image}`} alt='Imagem do prato' />
-        <h3 className='poppins-bold-300'>{dishData.dish} <GoChevronRight /></h3>
-        <p className='roboto-smaller-regular'>{dishData.description}</p>
-        <h4 className='roboto-biggest-regular'>
+        <h3> {dishData.dish} <GoChevronRight /></h3>
+        <p className='roboto-smaller-regular'>{dishData.description && dishData.description.length > 70 ? dishData.description?.substring(0, 70)+'...' : dishData.description}</p>
+        <h4>
           {formatReaisAndCentsToBRLString(dishData.reais, dishData.cents)}
         </h4>
       </div>
+      { !admin && 
+        <div className='order-wrapper'>
+          <BiMinus size={18} onClick={handleReduceAmount} />
+          <span className='roboto-big-bold'>
+            {String(amount).padStart(2, '0')}
+          </span>
+          <BiPlus size={18} onClick={handleIncreaseAmount} />
+          <Button text='incluir' />
+        </div> }
     </Content>
   );
 }

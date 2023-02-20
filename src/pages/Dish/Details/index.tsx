@@ -7,6 +7,7 @@ import { api } from '../../../services/api';
 
 // Custom components and hooks
 import { Header } from '../../../components/Header';
+import { Button } from '../../../components/Button';
 import { Footer } from '../../../components/Footer';
 import { useAuth } from '../../../hooks/auth';
 
@@ -16,7 +17,7 @@ import { FiChevronLeft } from 'react-icons/fi';
 
 // Type imports
 import { DishProps } from '../../Dish/New';
-import { Button } from '../../../components/Button';
+import { BiMinus, BiPlus } from 'react-icons/bi';
 
 export function DishDetails(){
 
@@ -27,9 +28,70 @@ export function DishDetails(){
   const [dishData, setDishData] = useState<DishProps>();
   const [ingredients, setIngredients] = useState<string[]>([]);
 
+  const [amount, setAmount] = useState<number>(1);
+
+  function convertNumberToMoneyStr(value: string) {
+
+    if(!value) {
+      return ''; 
+    }
+
+    const commaSwappedByDotsString = String(value).replace(',', '.');
+
+    let [reais, cents] = commaSwappedByDotsString.split('.');
+
+    if (cents && cents.length === 1) {
+      cents = String(Number(cents) * 10);
+    }
+
+    const splitString = reais.split('');
+    const reverseArray = splitString.reverse();
+    const joinString = reverseArray.join('');
+
+    let reversedDottedString = joinString.replace(/.{3}/g, '$&.');
+
+    if (reversedDottedString.length % 4 === 0) {
+      reversedDottedString = reversedDottedString.substring(0, reversedDottedString.length -1);
+    }
+
+    const splitReversedString = reversedDottedString.split('');
+    const reverseBackArray = splitReversedString.reverse();
+    const finalString = reverseBackArray.join('');
+    
+    if (cents) {
+      return 'R$ ' + finalString + ',' + cents.substring(0, 2).padStart(2, '0');
+    
+    } else {
+      return 'R$ ' + finalString + ',00';
+
+    }
+  }
+
   function navigateToDishEditPage(dish_id: string | undefined) {
     if (dish_id) {
       navigate(`/dish-edit/${dish_id}`);
+    }
+  }
+
+  function formatReaisAndCentsToBRLString(reais: number | undefined, cents: number | undefined) {
+
+    if (reais && cents) {
+      return convertNumberToMoneyStr(`${String(reais)}.${String(cents).padStart(2, '0')}`);    
+
+    } else if (reais) {
+      return convertNumberToMoneyStr(String(reais));
+    }
+  }
+
+  function handleReduceAmount() {
+    if (amount > 1) {
+      setAmount(amount - 1);
+    }
+  }
+
+  function handleIncreaseAmount() {
+    if (amount < 99) {
+      setAmount(amount + 1);
     }
   }
 
@@ -82,8 +144,18 @@ export function DishDetails(){
                     </li>
                   ))}
                 </ul>
-                <Button onClick={() => navigateToDishEditPage(dishData.id)}
-                  text='Editar prato' />
+                {user?.admin && 
+                  <Button onClick={() => navigateToDishEditPage(dishData.id)}
+                    text='Editar prato' /> }
+                {user?.admin &&
+                  <div className='order-wrapper'>
+                    <BiMinus size={18} onClick={handleReduceAmount} />
+                    <span className='roboto-big-bold'>
+                      {String(amount).padStart(2, '0')}
+                    </span>
+                    <BiPlus size={18} onClick={handleIncreaseAmount} />
+                    <Button text={`incluir - ${formatReaisAndCentsToBRLString(amount * Number(dishData.reais), amount * Number(dishData.cents))} `} />
+                  </div> }
               </div>
             </div> }
         </main>

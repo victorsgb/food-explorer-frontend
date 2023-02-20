@@ -19,7 +19,6 @@ export const Container = styled.div`
     align-items: flex-end;
     justify-content: center;
     gap: 0;
-    height: fit-content;
 
     h1 {
       white-space: nowrap;

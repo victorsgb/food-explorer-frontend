@@ -17,6 +17,7 @@ export const Container = styled.button`
 
   &:enabled {
     
+    cursor: pointer;
     color: ${({ theme }) => theme.light[100]};
     background-color: ${({ theme }) => theme.tints.tomato[100]};
         

@@ -11,9 +11,7 @@ export const Container = styled.div`
   overflow-y: auto;
 
   header {
-    div {
-      margin-top: 15.8rem;
-    }
+    margin-top: 15.8rem;
   }
 
   form {
