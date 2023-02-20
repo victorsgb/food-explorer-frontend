@@ -147,7 +147,7 @@ export function DishDetails(){
                 {user?.admin && 
                   <Button onClick={() => navigateToDishEditPage(dishData.id)}
                     text='Editar prato' /> }
-                {user?.admin &&
+                {!user?.admin &&
                   <div className='order-wrapper'>
                     <BiMinus size={18} onClick={handleReduceAmount} />
                     <span className='roboto-big-bold'>

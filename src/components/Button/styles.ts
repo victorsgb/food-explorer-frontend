@@ -20,6 +20,10 @@ export const Container = styled.button`
     cursor: pointer;
     color: ${({ theme }) => theme.light[100]};
     background-color: ${({ theme }) => theme.tints.tomato[100]};
+
+    &.delete-button {
+      background-color: ${({ theme }) => theme.dark[800]};
+    }
         
     &:hover, &:focus {
       

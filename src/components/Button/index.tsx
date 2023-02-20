@@ -14,15 +14,14 @@ interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
   text: string;
   image: string;
   icon: IconType;
+  kind: string;
   children: JSX.Element | JSX.Element[];
   isLoading: boolean;
 }
 
-export function Button({ text, image, icon: Icon, isLoading, children, ...rest }: ButtonProps | any) {
+export function Button({ text, image, icon: Icon, isLoading, kind, children, ...rest }: ButtonProps | any) {
   return (
-    <Container
-      {...rest}
-    >
+    <Container className={kind} {...rest} >
       { !isLoading && image &&
           <img src={image} alt='' /> }
       { !isLoading && Icon && 
