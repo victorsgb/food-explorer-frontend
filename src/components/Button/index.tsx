@@ -7,16 +7,30 @@ import { Loading } from '../Loading';
 // Styling related imports
 import { Container } from './styles';
 
+// Type imports
+import { IconType } from 'react-icons';
+
 interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
+  text: string;
+  image: string;
+  icon: IconType;
   children: JSX.Element | JSX.Element[];
   isLoading: boolean;
 }
 
-export function Button({ isLoading, children, ...rest }: ButtonProps | any) {
+export function Button({ text, image, icon: Icon, isLoading, children, ...rest }: ButtonProps | any) {
   return (
     <Container
       {...rest}
     >
+      { !isLoading && image &&
+          <img src={image} alt='' /> }
+      { !isLoading && Icon && 
+        <Icon size={20} /> }
+      { !isLoading && text &&
+        <span className='poppins-medium-100'>
+          {text}
+        </span> }
       { !isLoading && children}
       { isLoading && <Loading />}
     </Container>

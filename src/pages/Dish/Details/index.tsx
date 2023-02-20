@@ -82,11 +82,8 @@ export function DishDetails(){
                     </li>
                   ))}
                 </ul>
-                <Button onClick={() => navigateToDishEditPage(dishData.id)}>
-                  <span className='poppins-medium-100'>
-                    Editar prato
-                  </span>
-                </Button>
+                <Button onClick={() => navigateToDishEditPage(dishData.id)}
+                  text='Editar prato' />
               </div>
             </div> }
         </main>

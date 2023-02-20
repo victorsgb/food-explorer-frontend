@@ -85,9 +85,8 @@ export function SignIn(){
           onChange={handlePasswordChange} />
         <Button disabled={ !isReady ||
           (credentials?.password && credentials.password.length < 6)
-        } isLoading={isLoading} >
-          <span className='poppins-medium-100'>Entrar</span>
-        </Button>
+        } isLoading={isLoading}
+          text='Entrar' />
         <Link to={'/sign-up'} className='poppins-medium-100'>Criar uma conta</Link>
       </form>
       { !isLoading && apiResponse &&

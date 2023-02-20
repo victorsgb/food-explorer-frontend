@@ -143,9 +143,8 @@ export function SignUp(){
           onChange={handlePasswordChange} />
         <h3>{passwordIssue}</h3>
         <Button disabled={!isReady || passwordIssue}
-          isLoading={isLoading} >
-          <span className='poppins-medium-100'>Criar conta</span>
-        </Button>
+          isLoading={isLoading}
+          text='Criar conta' />
         <Link to={'/'} className='poppins-medium-100'>Já tenho uma conta</Link>
       </form>
       <Modal

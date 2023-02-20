@@ -222,11 +222,8 @@ export function DishNew(){
             <div className='buttons-wrapper'>
               <Button disabled={!isReady}
                 isLoading={isLoading}
-                onClick={handleCreateNewDish} >
-                <span className='poppins-medium-100'>
-                  Salvar alterações
-                </span>
-              </Button>
+                onClick={handleCreateNewDish}
+                text='Salvar alterações' />
             </div>
           </form>
           <Modal

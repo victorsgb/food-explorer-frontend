@@ -40,19 +40,16 @@ export function Modal({name, type, message, userDecisionSetter, ...rest}: ModalP
       <p className='roboto-smaller-regular'>{message}</p>
       <div className='buttons-wrapper'>
         { type === 'inform' &&
-          <Button onClick={handleClickOnInformOKButton}>
-            <span className='poppins-medium-100'>Entendi</span>
-          </Button> }
+          <Button onClick={handleClickOnInformOKButton}
+            text='Entendi' /> }
         { type === 'confirm' &&
           <>
-            <Button onClick={handleClickOnConfirmCancelButton}>
-              <GiCancel size={20}/>
-              <span className='poppins-medium-100'>Cancelar</span>
-            </Button>
-            <Button onClick={handleClickOnConfirmOKButton}>
-              <GiConfirmed size={20}/>
-              <span className='poppins-medium-100'>Confirmar</span>
-            </Button>
+            <Button onClick={handleClickOnConfirmCancelButton}
+              icon={GiCancel}
+              text='Cancelar' />
+            <Button onClick={handleClickOnConfirmOKButton}
+              icon={GiConfirmed}
+              text='Confirmar' />
           </> }
       </div>
     </Container>

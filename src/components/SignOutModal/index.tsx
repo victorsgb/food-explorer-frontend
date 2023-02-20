@@ -74,14 +74,12 @@ export function SignOutModal({name, message, userDecisionSetter, modalOpenTracke
     <Container id={name} {...rest}>
       <p>{message}</p>
       <div className='buttons-wrapper'>
-        <Button onClick={handleClickOnConfirmCancelButton}>
-          <GiConfirmed size={20}/>
-          Continuar
-        </Button>
-        <Button onClick={handleClickOnConfirmOKButton}>
-          <GiCancel size={20}/>
-          Sair
-        </Button>
+        <Button onClick={handleClickOnConfirmCancelButton}
+          icon={GiConfirmed}
+          text='Continuar' />
+        <Button onClick={handleClickOnConfirmOKButton}
+          icon={GiCancel}
+          text='Sair' />
       </div>
       <p>Desconectando em {timer} segundos...</p>
     </Container>

@@ -42,14 +42,9 @@ export function Header() {
       <div className='right-elements'>
         <Button onClick={ user?.admin
           ? navigateToNewDishPage
-          : navigateToViewOrdersPage
-        }>
-          { !user?.admin && 
-            <img src={order} alt='Ícone de pedidos' /> }
-          <span className='poppins-medium-100'>
-            {user?.admin ? 'Novo prato' : 'Pedidos (0)'}
-          </span>
-        </Button>
+          : navigateToViewOrdersPage }
+          image={ !user?.admin ? order : '' }
+          text= { user?.admin ? 'Novo prato' : 'Pedidos (0)'} />
         <FiLogOut onClick={handleSignOut} 
           size={22} color='#fff' />
       </div>
