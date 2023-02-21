@@ -20,6 +20,9 @@ import { Footer } from '../../../components/Footer';
 import { Container, Content } from './styles';
 import { FiChevronLeft, FiChevronDown, FiUpload, FiCheck } from 'react-icons/fi';
 
+// Type imports
+import { CategoryProps } from '../../Home';
+
 export interface DishProps {
   id?: string;
   category?: string;
@@ -36,7 +39,7 @@ export function DishNew(){
 
   const navigate = useNavigate();
 
-  const [categories, setCategories] = useState<string[]>();
+  const [categories, setCategories] = useState<CategoryProps[]>();
 
   const [dishData, setDishData] = useState<DishProps>({});
 
@@ -75,9 +78,10 @@ export function DishNew(){
   }
 
   function handleCategoryChange(event: any) {
+
     setDishData(dishData => ({
       ...dishData,
-      category: event.target.value
+      category: categories?.filter(item => item.id === event.target.value)[0].category
     }))
   }
 
@@ -105,7 +109,7 @@ export function DishNew(){
   useEffect(() => {
     async function fetchCategories() {
       const response = await api.get('/categories');
-      setCategories(response.data.map((categories: { category: any; }) => categories.category));
+      setCategories(response.data);
 
       setDishData(dishData => ({
         ...dishData,
@@ -165,7 +169,6 @@ export function DishNew(){
     }
 
   }, [submitRequest, dishImage, dishData, ingredients]);
-
 
   useEffect(() => {
     if (successCounter > 0) {

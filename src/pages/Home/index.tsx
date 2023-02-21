@@ -17,7 +17,7 @@ import { picture } from '../../assets';
 // Type imports
 import { DishProps } from '../Dish/New';
 
-interface CategoryProps {
+export interface CategoryProps {
   id: string;
   category: string;
 }

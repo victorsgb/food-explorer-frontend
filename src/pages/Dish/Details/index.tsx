@@ -67,12 +67,6 @@ export function DishDetails(){
     }
   }
 
-  function navigateToDishEditPage(dish_id: string | undefined) {
-    if (dish_id) {
-      navigate(`/dish-edit/${dish_id}`);
-    }
-  }
-
   function formatReaisAndCentsToBRLString(reais: number | undefined, cents: number | undefined) {
 
     if (reais && cents) {
@@ -80,6 +74,12 @@ export function DishDetails(){
 
     } else if (reais) {
       return convertNumberToMoneyStr(String(reais));
+    }
+  }
+
+  function navigateToDishEditPage(dish_id: string | undefined) {
+    if (dish_id) {
+      navigate(`/dish-edit/${dish_id}`);
     }
   }
 

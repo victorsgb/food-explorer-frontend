@@ -48,6 +48,17 @@ export const Content = styled.div`
       gap: 3.2rem;
       margin-bottom: 5.3rem;
 
+      div.buttons-wrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 3.2rem;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
       @media (min-width: 650px) {
 
         display: grid;
@@ -79,14 +90,6 @@ export const Content = styled.div`
         }
         div.buttons-wrapper {
           grid-area: buttons;
-
-          display: flex;
-          align-items: center;
-          justify-content: flex-end;
-          gap: 3.2rem;
-          width: 100%;
-          margin: 0;
-          padding: 0;
 
           button {
             max-width: 17.2rem;

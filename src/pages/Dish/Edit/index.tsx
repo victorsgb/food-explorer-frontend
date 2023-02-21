@@ -1,6 +1,6 @@
 // Core dependencies
 import { useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 // External services
 import { api } from '../../../services/api';
@@ -20,24 +20,15 @@ import { Footer } from '../../../components/Footer';
 import { Container, Content } from './styles';
 import { FiChevronLeft, FiChevronDown, FiUpload, FiCheck } from 'react-icons/fi';
 
-export interface DishProps {
-  id?: string;
-  category?: string;
-  category_id?: string;
-  dish?: string;
-  cost?: string;
-  reais?: string;
-  cents?: string;
-  description?: string;
-  image?: string;
-}
+// Type related imports
+import { CategoryProps } from '../../Home'
+import { DishProps } from '../New';
 
 export function DishEdit(){
 
-  const navigate = useNavigate();
   const params = useParams();
 
-  const [categories, setCategories] = useState<string[]>();
+  const [categories, setCategories] = useState<CategoryProps[]>();
 
   const [dishData, setDishData] = useState<DishProps>({});
 
@@ -49,12 +40,11 @@ export function DishEdit(){
 
   const [isReady, setIsReady] = useState<boolean>(false);
   
-  const [submitCreateRequest, setSubmitCreateRequest] = useState<boolean>(false);
+  const [submitEditRequest, setSubmitEditRequest] = useState<boolean>(false);
   const [submitDeleteRequest, setSubmitDeleteRequest] = useState<boolean>(false);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [successCounter, setSuccessCounter] = useState<number>(-1);
   const [apiResponse, setApiResponse] = useState<string>('');
 
   function handleImageChange(event: any) {
@@ -78,9 +68,10 @@ export function DishEdit(){
   }
 
   function handleCategoryChange(event: any) {
+
     setDishData(dishData => ({
       ...dishData,
-      category: event.target.value
+      category: categories?.filter(item => String(item.id) === event.target.value)[0].category
     }))
   }
 
@@ -98,10 +89,10 @@ export function DishEdit(){
     }))
   }
 
-  async function handleCreateNewDish(event: any) {
+  async function handleEditDish(event: any) {
     event.preventDefault();
 
-    const modal = document.querySelector('dialog#confirm-create') as HTMLDialogElement;
+    const modal = document.querySelector('dialog#confirm-edit') as HTMLDialogElement;
     modal?.showModal();
   }
 
@@ -113,18 +104,80 @@ export function DishEdit(){
   }
 
   useEffect(() => {
-    async function fetchCategories() {
+    async function fetchCategoriesAndDishData() {
       const response = await api.get('/categories');
-      setCategories(response.data.map((categories: { category: any; }) => categories.category));
+      setCategories(response.data);
 
-      setDishData(dishData => ({
-        ...dishData,
-        category: response.data[0].category
-      }));
-    }
+      const response_2 = await api.get(`/dishes/${params.dish_id}`);
+      let dishDataFromApi = response_2.data;
 
-    fetchCategories();
-  }, []);
+      let categoryFromApi = response.data.filter((item: { id: any; }) => item.id === dishDataFromApi.category_id)[0].category;
+
+      const categoryInput  = document.querySelector('#Categoria') as HTMLSelectElement;
+      categoryInput.value = dishDataFromApi.category_id;
+
+      function convertNumberToMoneyStr(value: string | undefined) {
+
+        if(!value) {
+          return ''; 
+        }
+  
+        const commaSwappedByDotsString = String(value).replace(',', '.');
+  
+        let [reais, cents] = commaSwappedByDotsString.split('.');
+  
+        if (cents && cents.length === 1) {
+          cents = String(Number(cents) * 10);
+        }
+  
+        const splitString = reais.split('');
+        const reverseArray = splitString.reverse();
+        const joinString = reverseArray.join('');
+  
+        let reversedDottedString = joinString.replace(/.{3}/g, '$&.');
+  
+        if (reversedDottedString.length % 4 === 0) {
+          reversedDottedString = reversedDottedString.substring(0, reversedDottedString.length -1);
+        }
+  
+        const splitReversedString = reversedDottedString.split('');
+        const reverseBackArray = splitReversedString.reverse();
+        const finalString = reverseBackArray.join('');
+        
+        if (cents) {
+          return 'R$ ' + finalString + ',' + cents.substring(0, 2).padStart(2, '0');
+        
+        } else {
+          return 'R$ ' + finalString + ',00';
+  
+        }
+      };
+  
+      function handleMoneyInputOnBlur(cost: string | undefined) {
+        const moneyInput  = document.querySelector('#money-input') as HTMLInputElement;
+    
+        moneyInput.type = 'text'
+        moneyInput.value = convertNumberToMoneyStr(cost) as string;
+      };
+  
+      let cost = `${String(dishDataFromApi.reais)}.${String(dishDataFromApi.cents).padStart(2, '0')}`
+
+      handleMoneyInputOnBlur(cost);
+
+      setDishData({
+        category: categoryFromApi,
+        dish: dishDataFromApi.dish,
+        description: dishDataFromApi.description,
+        cost
+      })
+
+      const response_3 = await api.get(`/ingredients/${params.dish_id}`);
+
+      setIngredients(response_3.data);
+    }  
+
+    fetchCategoriesAndDishData();
+  }, [params]);
 
   useEffect(() => {
 
@@ -138,24 +191,24 @@ export function DishEdit(){
 
   useEffect(() => {
 
-    async function handleSubmitCreateRequest() {
+    async function handleSubmitEditRequest() {
 
       setApiResponse('');
       setIsLoading(true);
 
       let fileUploadForm = new FormData();
-      fileUploadForm.append('image', dishImage as Blob);
+
+      if (dishImage) {
+        fileUploadForm.append('image', dishImage as Blob);
+      }
 
       try {
 
-        await api.post(`/dishes?category=${dishData.category}&dish=${dishData.dish}&ingredients=${ingredients}&cost=${dishData.cost}&description=${dishData.description}`, fileUploadForm );
+        await api.put(`/dishes/${params.dish_id}?category=${dishData.category}&dish=${dishData.dish}&ingredients=${ingredients}&cost=${dishData.cost}&description=${dishData.description}`, fileUploadForm );
 
-        const modal = document.querySelector('dialog#inform-create') as HTMLDialogElement;
+        const modal = document.querySelector('dialog#inform-edit') as HTMLDialogElement;
         modal?.showModal();
-
-        // set value to navigate to SignIn page after three seconds...
-        setSuccessCounter(3);
-        
+       
       } catch(error: any) {
         if (error.response) {
           setApiResponse(error.response.data.message);
@@ -169,13 +222,12 @@ export function DishEdit(){
       setIsLoading(false);
     }
 
-    if (submitCreateRequest) {
-      handleSubmitCreateRequest();
-      setSubmitCreateRequest(false);
+    if (submitEditRequest) {
+      handleSubmitEditRequest();
+      setSubmitEditRequest(false);
     }
 
-  }, [submitCreateRequest, dishImage, dishData, ingredients]);
-
+  }, [submitEditRequest, dishImage, dishData, ingredients, params]);
 
   useEffect(() => {
 
@@ -190,9 +242,6 @@ export function DishEdit(){
 
         const modal = document.querySelector('dialog#inform-delete') as HTMLDialogElement;
         modal?.showModal();
-
-        // set value to navigate to SignIn page after three seconds...
-        setSuccessCounter(3);
         
       } catch(error: any) {
         if (error.response) {
@@ -209,24 +258,10 @@ export function DishEdit(){
 
     if (submitDeleteRequest) {
       handleSubmitDeleteRequest();
-      setSubmitCreateRequest(false);
+      setSubmitEditRequest(false);
     }
 
-  }, [submitDeleteRequest, dishImage, dishData, ingredients]);
-
-
-  useEffect(() => {
-    if (successCounter > 0) {
-      const interval = setInterval(() => {
-        setSuccessCounter(prevState => prevState - 1);
-      }, 1000);
-      return () => clearInterval(interval);
-    }
-
-    if (successCounter === 0) {
-      navigate('/');
-    }
-  }, [successCounter, navigate]);
+  }, [submitDeleteRequest, params]);
 
   return (
     <Container>
@@ -250,7 +285,8 @@ export function DishEdit(){
               label='Nome'
               placeholder='Ex.: Salada Caesar'
               autoComplete='off'
-              onChange={handleNameChange} />
+              onChange={handleNameChange}
+              defaultValue={dishData?.dish} />
             <Select label='Categoria'
               options={categories}
               icon={FiChevronDown}
@@ -263,26 +299,28 @@ export function DishEdit(){
               label='Preço'
               placeholder='R$ 0,00'
               autoComplete='off'
-              onChange={handlePriceChange} />
+              onChange={handlePriceChange}
+              defaultValue={dishData?.cost} />
             <TextArea label='Descrição'
               placeholder='Fale brevemente sobre o prato, seus ingredientes e composição'
-              onChange={handleDescriptionChange} />
+              onChange={handleDescriptionChange}
+              defaultValue={dishData?.description} />
             <div className='buttons-wrapper'>
               <Button kind='delete-button'
-                isLoading={isLoading}
+                disabled={isLoading}
                 onClick={handleDeleteDish}
                 text='Excluir prato' />
               <Button disabled={!isReady}
                 isLoading={isLoading}
-                onClick={handleCreateNewDish}
+                onClick={handleEditDish}
                 text='Salvar alterações' />
             </div>
           </form>
           <Modal
-            name='confirm-create'
+            name='confirm-edit'
             type='confirm'
-            message='Você está pronto(a) para cadastrar um novo prato?'
-            userDecisionSetter={setSubmitCreateRequest}
+            message='Você está pronto(a) para editar este prato?'
+            userDecisionSetter={setSubmitEditRequest}
           />
           <Modal
             name='confirm-delete'
@@ -291,9 +329,9 @@ export function DishEdit(){
             userDecisionSetter={setSubmitDeleteRequest}
           />                 
           <Modal
-            name='inform-create'
+            name='inform-edit'
             type='inform'
-            message={`Prato cadastrado com sucesso! 😊`}
+            message={`Prato editado com sucesso! 😊`}
           />
           <Modal
             name='inform-delete'

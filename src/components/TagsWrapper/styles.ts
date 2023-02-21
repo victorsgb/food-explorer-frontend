@@ -91,6 +91,7 @@ export const Content = styled.div`
 
   padding: 8px 1.2rem;
   border-radius: 8px;
+  white-space: nowrap;
  
   &.item {
     border: 1px solid transparent;

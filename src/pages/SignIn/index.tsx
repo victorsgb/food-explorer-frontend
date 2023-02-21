@@ -48,7 +48,6 @@ export function SignIn(){
     if (credentials?.email && credentials?.password) {
       const response = await signIn(credentials);
 
-      console.log({response});
       if (response === 'Logado com sucesso!') {
         navigate('/')
 

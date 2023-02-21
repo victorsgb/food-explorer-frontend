@@ -29,9 +29,9 @@ export function Input({ type, label, placeholder, icon: Icon, ...rest }: InputPr
       return '';
     }
 
-    let [reaisWithDotsAndMoneyNotation, cents] = value.split(',');
+    let [reaisWithMoneyNotation, cents] = value.split(',');
     
-    let [ , reaisWithDots] = reaisWithDotsAndMoneyNotation.split(' ');
+    let [ , reaisWithDots] = reaisWithMoneyNotation.split(' ');
 
     if (cents && cents.length === 1) {
       cents = String(Number(cents) * 10);
