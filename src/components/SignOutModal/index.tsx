@@ -72,7 +72,7 @@ export function SignOutModal({name, message, userDecisionSetter, modalOpenTracke
 
   return (
     <Container id={name} {...rest}>
-      <p>{message}</p>
+      <p className='roboto-smaller-regular'>{message}</p>
       <div className='buttons-wrapper'>
         <Button onClick={handleClickOnConfirmCancelButton}
           icon={GiConfirmed}
@@ -81,7 +81,7 @@ export function SignOutModal({name, message, userDecisionSetter, modalOpenTracke
           icon={GiCancel}
           text='Sair' />
       </div>
-      <p>Desconectando em {timer} segundos...</p>
+      <p className='roboto-smaller-regular'>Desconectando em {timer} segundos...</p>
     </Container>
   )
 }

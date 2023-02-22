@@ -21,5 +21,11 @@ export const Container = styled.dialog`
 
   div.buttons-wrapper {
     display: flex;
+    justify-content: center;
+    gap: 1.0rem;
+
+    button {
+      max-width: 12.0rem;
+    }
   }
 `;

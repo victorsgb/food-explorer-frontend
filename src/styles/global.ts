@@ -23,6 +23,13 @@ export default createGlobalStyle<themeProps>`
       text-decoration: none;
       padding: 0;
 
+      .dm-sans-regular-400 {
+        font-family: 'DM Sans', sans-serif;
+        font-weight: 400;
+        font-size: 1.2rem;
+        line-height: 1.5rem;
+      }
+
       .poppins-medium-100 {
         font-family: 'Poppins', sans-serif;
         font-weight: 500;

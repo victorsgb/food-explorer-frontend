@@ -1,17 +1,19 @@
 // Core dependencies
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ReactSimplyCarousel from 'react-simply-carousel';
 
 // External services
 import { api } from '../../services/api';
 
-// Core components
+// Custom components and hooks
 import { Button } from '../Button';
+import useWindowDimensions from '../../hooks/windowDimensions';
 
 // Styling related imports
 import { Container, Content } from './styles';
-import { pencil, heart } from '../../assets';
-import { BiMinus, BiPlus} from 'react-icons/bi';
+import { pencil, heart, right, left } from '../../assets';
+import { BiMinus, BiPlus } from 'react-icons/bi';
 import { GoChevronRight } from 'react-icons/go';
 
 // Type imports
@@ -20,9 +22,10 @@ import { DishProps } from '../../pages/Dish/New';
 interface DishCardProps {
   admin?: boolean;
   dishData: DishProps;
+  device: 'desktop' | 'mobile';
 }
 
-export function DishCard({ admin, dishData }: DishCardProps){
+export function DishCard({ admin, dishData, device }: DishCardProps){
 
   const navigate = useNavigate();
   const [amount, setAmount] = useState<number>(1);
@@ -95,7 +98,7 @@ export function DishCard({ admin, dishData }: DishCardProps){
   }
 
   return (
-    <Content>
+    <Content className={device}>
       { admin
         ? <img className='icon' src={pencil} alt=''
           onClick={() => navigateToEditPage(dishData.id)} />
@@ -129,18 +132,119 @@ export interface DishCardsWrapperProps {
 }
 
 export function DishCardsWrapper({ category, admin, dishesData }: DishCardsWrapperProps){
+  
+  const [activeSlideIndex, setActiveSlideIndex] = useState<number>(0);
+
+  const { width } = useWindowDimensions();
 
   return (
     <Container>
-      { (dishesData && 
-        dishesData.length > 0) &&
-        <h2 className='poppins-medium-400'>{category}</h2> }
-      <div className="cards-wrapper">
-        {dishesData && dishesData.map((item, index) => (
-          <DishCard key={index}
-            admin={admin}
-            dishData={item}/> ))}
-      </div>
+      { (dishesData && dishesData.length > 0) &&
+        <>
+          <h2 className='poppins-medium-400'>{category}</h2>
+          { width >= 650 && 
+            <ReactSimplyCarousel
+              activeSlideIndex={activeSlideIndex}
+              onRequestChange={setActiveSlideIndex}
+              forwardBtnProps={{
+                style: {
+                  alignSelf: 'center',
+                  background: 'rgba(0, 10, 15, 0.272541)',
+                  border: 'none',
+                  color: 'white',
+                  cursor: 'pointer',
+                  fontSize: '25px',
+                  height: '100%',
+                  lineHeight: 1,
+                  textAlign: 'center',
+                  width: 30,
+                },
+                children: <img src={right} alt='' />,
+              }}
+              backwardBtnProps={{
+                style: {
+                  alignSelf: 'center',
+                  background: 'rgba(0, 10, 15, 0.272541)',
+                  border: 'none',
+                  color: 'white',
+                  cursor: 'pointer',
+                  fontSize: '25px',
+                  height: '100%',
+                  lineHeight: 1,
+                  textAlign: 'center',
+                  width: 30,
+                },
+                children: <img src={left} alt='' />,
+              }}
+              responsiveProps={[
+                {
+                  itemsToShow: 3,
+                  itemsToScroll: 1,
+                  minWidth: 768,
+                },
+              ]}
+              speed={400}
+              easing="linear"           
+            >
+              {dishesData && dishesData.map((item, index) => (
+                <DishCard key={index}
+                  admin={admin}
+                  dishData={item}
+                  device='desktop' />
+              ))}
+            </ReactSimplyCarousel> }
+          { width < 650 && 
+            <ReactSimplyCarousel
+              activeSlideIndex={activeSlideIndex}
+              onRequestChange={setActiveSlideIndex}
+              forwardBtnProps={{
+                style: {
+                  alignSelf: 'center',
+                  background: 'rgba(0, 10, 15, 0.272541)',
+                  border: 'none',
+                  color: 'white',
+                  cursor: 'pointer',
+                  fontSize: '25px',
+                  height: '100%',
+                  lineHeight: 1,
+                  textAlign: 'center',
+                  width: 30,
+                }
+              }}
+              backwardBtnProps={{
+                style: {
+                  alignSelf: 'center',
+                  background: 'rgba(0, 10, 15, 0.272541)',
+                  border: 'none',
+                  color: 'white',
+                  cursor: 'pointer',
+                  fontSize: '25px',
+                  height: '100%',
+                  lineHeight: 1,
+                  textAlign: 'center',
+                  width: 30,
+                }
+              }}
+              responsiveProps={[
+                {
+                  itemsToShow: 2,
+                  itemsToScroll: 1,
+                  minWidth: 768,
+                },
+              ]}
+              speed={400}
+              easing="linear"           
+            >
+              {dishesData && dishesData.map((item, index) => (
+                <DishCard key={index}
+                  admin={admin}
+                  dishData={item}
+                  device={width >= 650 ? 'desktop' : 'mobile'} />
+              ))}
+            </ReactSimplyCarousel> }
+        </> }
+
     </Container>
   );
 }
+

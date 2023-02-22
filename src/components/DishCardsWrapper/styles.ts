@@ -5,29 +5,35 @@ export const Container = styled.div`
   margin-top: 4.7rem;
   display: flex;
   flex-direction: column;
-  gap: 2.25rem;
-
+  align-items: flex-start;
+  width: 100%;
+  overflow: hidden;
+  
   h2 {
     color: ${({ theme }) => theme.light[300]}
-  }
-
-  div.cards-wrapper {
   }
 `;
 
 export const Content = styled.div`
-  height: 46.2rem;
-  width: 30.4rem;
   background-color: ${({ theme }) => theme.dark[200]};
   border: 1px solid ${({ theme }) => theme.dark[200]};
   border-radius: 8px;
   padding-top: 1.6rem;
   
-  @media (max-width: 650px) {
-    height: 29.2rem;
-    width: 21.0rem;
+  &.desktop {
+    margin-right: 2.7rem;
+    height: 46.2rem;
+    min-width: 30.4rem;
+    width: 30.4rem;
   }
 
+  &.mobile {
+    margin-right: 1.6rem;
+    height: 29.2rem;
+    min-width: 21.0rem;
+    width: 21.0rem;
+  }
+  
   display: flex;
   flex-direction: column;
   align-items: center;

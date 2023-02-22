@@ -21,6 +21,10 @@ export const Content = styled.div`
   main {
     min-height: 100vh;
     margin: 16.4rem 6.4rem 4.6rem;
+
+    @media (max-width: 650px) {
+      margin: 2.0rem 3% 4.6rem;
+    }
     
     div.banner {
       max-height: 26.0rem;
@@ -41,7 +45,7 @@ export const Content = styled.div`
       }
   
       @media (max-width: 650px) {
-        margin: 10% 5% 6.3rem;
+        margin: 10% 1% 1.3rem;
       }
     }
   }

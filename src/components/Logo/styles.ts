@@ -23,7 +23,9 @@ export const Container = styled.div`
     h1 {
       white-space: nowrap;
       color: ${({ theme }) => theme.light[100]};
-      font-size: clamp(1.2rem, 5vw, 4.2rem);
+      @media (max-width: 650px) {
+        font-size: 1.2rem;
+      }
     }
     span {
       color: ${({ theme }) => theme.tints.cake[200]};
