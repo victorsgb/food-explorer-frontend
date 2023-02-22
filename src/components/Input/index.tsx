@@ -103,7 +103,7 @@ export function Input({ type, label, placeholder, icon: Icon, ...rest }: InputPr
     <Container id={type} className='input'>
       { label && 
         <label htmlFor={label}
-          className='roboto-small-regular' >
+          className='label roboto-small-regular' >
           {label}
         </label> }
       <div className={`input-wrapper ${type}`}> 

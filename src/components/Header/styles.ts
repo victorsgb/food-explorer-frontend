@@ -14,7 +14,7 @@ export const Container = styled.div`
 
   overflow-y: hidden;
   overflow-x: auto;
-  
+
   div.left-elements, div.right-elements {
     display: flex;
     align-items: center;
@@ -31,11 +31,26 @@ export const Container = styled.div`
         line-height: 'auto';
       }
     }
+
+    div#name {
+      @media (max-width: 650px) {
+        display: none;
+      }
+    }
+
+    @media (max-width: 650px) {
+      min-width: 0;
+    }
+
   }
 
   div.right-elements {
     min-width: 20.0rem;
     gap: 3.2rem;
+
+    @media (max-width: 650px) {
+      display: none;
+    }
     
     button {
       max-width: 21.6rem;
@@ -46,4 +61,12 @@ export const Container = styled.div`
       cursor: pointer;
     }
   }
+
+  @media (max-width: 650px) {
+    justify-content: center;
+    * {
+      border: 1px solid red;
+    }
+  }
+
 `;

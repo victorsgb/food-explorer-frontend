@@ -19,6 +19,12 @@ export const Container = styled.div`
     align-items: flex-end;
     justify-content: center;
     gap: 0;
+    
+    @media (max-width: 650px) {
+      flex-direction: row;
+      align-items: center;
+      gap: 1.0rem;
+    }
 
     h1 {
       white-space: nowrap;

@@ -81,7 +81,7 @@ export function DishNew(){
 
     setDishData(dishData => ({
       ...dishData,
-      category: categories?.filter(item => item.id === event.target.value)[0].category
+      category: categories?.filter(item => String(item.id) === event.target.value)[0].category
     }))
   }
 

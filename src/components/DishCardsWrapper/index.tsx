@@ -179,7 +179,7 @@ export function DishCardsWrapper({ category, admin, dishesData }: DishCardsWrapp
               responsiveProps={[
                 {
                   itemsToShow: 3,
-                  itemsToScroll: 1,
+                  itemsToScroll: 3,
                   minWidth: 768,
                 },
               ]}
@@ -228,7 +228,7 @@ export function DishCardsWrapper({ category, admin, dishesData }: DishCardsWrapp
               responsiveProps={[
                 {
                   itemsToShow: 2,
-                  itemsToScroll: 1,
+                  itemsToScroll: 2,
                   minWidth: 768,
                 },
               ]}
