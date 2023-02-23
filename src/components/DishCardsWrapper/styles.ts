@@ -19,19 +19,17 @@ export const Content = styled.div`
   border: 1px solid ${({ theme }) => theme.dark[200]};
   border-radius: 8px;
   padding-top: 1.6rem;
+
+  margin-right: 1.6rem;
+  height: 29.2rem;
+  min-width: 21.0rem;
+  width: 21.0rem;
   
-  &.desktop {
+  @media (min-width: 650px) {
     margin-right: 2.7rem;
     height: 46.2rem;
     min-width: 30.4rem;
     width: 30.4rem;
-  }
-
-  &.mobile {
-    margin-right: 1.6rem;
-    height: 29.2rem;
-    min-width: 21.0rem;
-    width: 21.0rem;
   }
   
   display: flex;
@@ -45,6 +43,7 @@ export const Content = styled.div`
     margin-right: 1.8rem;
     height: 2.4rem;
     width: 2.4rem;
+    z-index: 1;
 
     &:hover {
       cursor: pointer;
@@ -58,6 +57,10 @@ export const Content = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
+
+    &.no-admin {
+      transform: translateY(-2.0rem);
+    }
 
     @media (max-width: 650px) {
       gap: 1.2rem;
@@ -126,27 +129,50 @@ export const Content = styled.div`
   div.order-wrapper {
 
     width: 100%;
+    padding: 0 2.4rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1.8rem;
+
+    @media (min-width: 650px) {
+      flex-direction: row;
+      gap: 1.8rem;
+    }
+
     * {
       padding: 0;
       margin: 0;
     }
 
-    svg {
-      align-self: center;
-      color: ${({ theme }) => theme.light[100]};
-      width: 1.8rem;
+    &.no-admin {
+      transform: translateY(-2.0rem);
     }
 
-    span {
-      color: ${({ theme }) => theme.light[300]};
+    div.order-panel {
+      
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.8rem;
+
+      svg {
+        align-self: center;
+        color: ${({ theme }) => theme.light[100]};
+        width: 1.8rem;
+      }
+  
+      span {
+        color: ${({ theme }) => theme.light[300]};
+      }
     }
 
     button {
-      width: 9.2rem;
+
+      @media (min-width: 650px) {
+        width: 9.2rem;
+      }
+
     }
   }
 `;

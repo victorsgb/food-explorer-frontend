@@ -1,5 +1,5 @@
 // Core dependencies
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ReactSimplyCarousel from 'react-simply-carousel';
 
@@ -12,8 +12,7 @@ import useWindowDimensions from '../../hooks/windowDimensions';
 
 // Styling related imports
 import { Container, Content } from './styles';
-import { pencil, heart, right, left } from '../../assets';
-import { BiMinus, BiPlus } from 'react-icons/bi';
+import { pencil, heart, right, left, plus, minus } from '../../assets';
 import { GoChevronRight } from 'react-icons/go';
 
 // Type imports
@@ -97,13 +96,14 @@ export function DishCard({ admin, dishData, device }: DishCardProps){
     }
   }
 
+
   return (
     <Content className={device}>
       { admin
         ? <img className='icon' src={pencil} alt=''
           onClick={() => navigateToEditPage(dishData.id)} />
         : <img className='icon' src={heart} alt='' /> }
-      <div className='details'
+      <div className={`details ${!admin && 'no-admin'}`}
         onClick={() => navigateToDetailsPage(dishData.id)} >
         <img src={`${api.defaults.baseURL}/files/${dishData.image}`} alt='Imagem do prato' />
         <h3> {dishData.dish} <GoChevronRight /></h3>
@@ -113,12 +113,14 @@ export function DishCard({ admin, dishData, device }: DishCardProps){
         </h4>
       </div>
       { !admin && 
-        <div className='order-wrapper'>
-          <BiMinus size={18} onClick={handleReduceAmount} />
-          <span className='roboto-big-bold'>
-            {String(amount).padStart(2, '0')}
-          </span>
-          <BiPlus size={18} onClick={handleIncreaseAmount} />
+        <div className={`order-wrapper ${!admin && 'no-admin'}`}>
+          <div className='order-panel'>
+            <img src={minus} alt='' onClick={handleReduceAmount} />
+            <span className='roboto-big-bold'>
+              {String(amount).padStart(2, '0')}
+            </span>
+            <img src={plus} alt='' onClick={handleIncreaseAmount} />
+          </div>
           <Button text='incluir' />
         </div> }
     </Content>
@@ -131,25 +133,48 @@ export interface DishCardsWrapperProps {
   dishesData: DishProps[]
 }
 
+interface SliderButtonProps {
+  visible?: boolean;
+  height?: number;
+}
+
 export function DishCardsWrapper({ category, admin, dishesData }: DishCardsWrapperProps){
   
   const [activeSlideIndex, setActiveSlideIndex] = useState<number>(0);
 
   const { width } = useWindowDimensions();
 
+  const [sliderButton, setSliderButton] = useState<SliderButtonProps>({});
+
+  useEffect(() => {
+
+    if (width > 650) {
+      setSliderButton({
+        visible: true
+      });
+
+    } else {
+      setSliderButton({
+        visible: false
+      });
+
+    }
+
+  }, [width]);
+
   return (
     <Container>
       { (dishesData && dishesData.length > 0) &&
         <>
           <h2 className='poppins-medium-400'>{category}</h2>
-          { width >= 650 && 
-            <ReactSimplyCarousel
+          <ReactSimplyCarousel
               activeSlideIndex={activeSlideIndex}
               onRequestChange={setActiveSlideIndex}
               forwardBtnProps={{
+                show: sliderButton.visible,
                 style: {
                   alignSelf: 'center',
-                  background: 'rgba(0, 10, 15, 0.272541)',
+                  background: 'none',
                   border: 'none',
                   color: 'white',
                   cursor: 'pointer',
@@ -162,9 +187,10 @@ export function DishCardsWrapper({ category, admin, dishesData }: DishCardsWrapp
                 children: <img src={right} alt='' />,
               }}
               backwardBtnProps={{
+                show: sliderButton.visible,
                 style: {
                   alignSelf: 'center',
-                  background: 'rgba(0, 10, 15, 0.272541)',
+                  background: 'none',
                   border: 'none',
                   color: 'white',
                   cursor: 'pointer',
@@ -192,56 +218,8 @@ export function DishCardsWrapper({ category, admin, dishesData }: DishCardsWrapp
                   dishData={item}
                   device='desktop' />
               ))}
-            </ReactSimplyCarousel> }
-          { width < 650 && 
-            <ReactSimplyCarousel
-              activeSlideIndex={activeSlideIndex}
-              onRequestChange={setActiveSlideIndex}
-              forwardBtnProps={{
-                style: {
-                  alignSelf: 'center',
-                  background: 'rgba(0, 10, 15, 0.272541)',
-                  border: 'none',
-                  color: 'white',
-                  cursor: 'pointer',
-                  fontSize: '25px',
-                  height: '100%',
-                  lineHeight: 1,
-                  textAlign: 'center',
-                  width: 30,
-                }
-              }}
-              backwardBtnProps={{
-                style: {
-                  alignSelf: 'center',
-                  background: 'rgba(0, 10, 15, 0.272541)',
-                  border: 'none',
-                  color: 'white',
-                  cursor: 'pointer',
-                  fontSize: '25px',
-                  height: '100%',
-                  lineHeight: 1,
-                  textAlign: 'center',
-                  width: 30,
-                }
-              }}
-              responsiveProps={[
-                {
-                  itemsToShow: 2,
-                  itemsToScroll: 2,
-                  minWidth: 768,
-                },
-              ]}
-              speed={400}
-              easing="linear"           
-            >
-              {dishesData && dishesData.map((item, index) => (
-                <DishCard key={index}
-                  admin={admin}
-                  dishData={item}
-                  device={width >= 650 ? 'desktop' : 'mobile'} />
-              ))}
-            </ReactSimplyCarousel> }
+            </ReactSimplyCarousel>
+
         </> }
 
     </Container>
