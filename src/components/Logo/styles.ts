@@ -29,13 +29,9 @@ export const Container = styled.div`
     h1 {
       white-space: nowrap;
       color: ${({ theme }) => theme.light[100]};
-      @media (max-width: 650px) {
-        font-size: 1.2rem;
-      }
     }
     span {
       color: ${({ theme }) => theme.tints.cake[200]};
-      line-height: 12px;
     }
   }
 `;

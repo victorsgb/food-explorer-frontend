@@ -8,14 +8,14 @@ import { Button } from '../Button';
 import { Container } from './styles';
 import { GiCancel, GiConfirmed } from 'react-icons/gi';
 
-interface ModalProps {
+interface SignOutModalProps {
   name: string;
   message: string;
   userDecisionSetter?: React.Dispatch<React.SetStateAction<boolean>>;
   modalOpenTracker: number;
 }
 
-export function SignOutModal({name, message, userDecisionSetter, modalOpenTracker, ...rest}: ModalProps | any) {
+export function SignOutModal({name, message, userDecisionSetter, modalOpenTracker, ...rest}: SignOutModalProps | any) {
 
   const [timer, setTimer] = useState<number>(60);
   const timerRef = useRef<number | undefined>(timer);

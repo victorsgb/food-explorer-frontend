@@ -15,15 +15,27 @@ export const Container = styled.div`
   overflow-y: hidden;
   overflow-x: auto;
 
-  div.left-elements, div.right-elements {
+  div.left-elements {
     display: flex;
     align-items: center;
-    justify-content: center;
-  }
+    justify-content: space-between;
+    gap: 8.3rem;
+    min-width: 0;
 
-  div.left-elements {
-    min-width: 60.0rem;
-    gap: 4.3rem;
+    width: 100%;
+
+    img.menu, img.order {
+
+      cursor: pointer;
+
+      @media (min-width: 650px) {
+        display: none;
+      }
+
+      &.admin {
+        display: none;
+      }
+    }
 
     div.logo {
       * {
@@ -38,14 +50,18 @@ export const Container = styled.div`
       }
     }
 
-    @media (max-width: 650px) {
-      min-width: 0;
+    @media (min-width: 650px) {
+      min-width: 60.0rem;
+      gap: 4.3rem;
     }
 
   }
 
   div.right-elements {
     min-width: 20.0rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 3.2rem;
 
     @media (max-width: 650px) {
@@ -56,7 +72,7 @@ export const Container = styled.div`
       max-width: 21.6rem;
     }
   
-    svg {
+    img {
       width: fit-content;
       cursor: pointer;
     }
@@ -64,9 +80,6 @@ export const Container = styled.div`
 
   @media (max-width: 650px) {
     justify-content: center;
-    * {
-      border: 1px solid red;
-    }
   }
 
 `;

@@ -3,14 +3,15 @@ import { useNavigate } from 'react-router-dom';
 
 // Custom components and hooks
 import { Logo } from '../Logo';
+import { Menu } from '../Menu';
 import { Input } from '../Input';
 import { Button } from '../Button';
 import { useAuth } from '../../hooks/auth';
 
 // Styling related imports
 import { Container } from './styles';
-import { order } from '../../assets';
-import { FiSearch, FiLogOut } from 'react-icons/fi';
+import { logout, menu, order } from '../../assets';
+import { FiSearch } from 'react-icons/fi';
 
 export function Header() {
 
@@ -26,6 +27,17 @@ export function Header() {
     alert('Página de pedidos!');
   }
 
+  function openMobileMenu() {
+
+    const modal = document.querySelector('dialog#menu') as HTMLDialogElement;
+
+    const content = document.querySelector('.content') as HTMLDivElement;
+    console.log({content});
+    content.style.overflowY = 'hidden';
+
+    modal?.showModal();
+  }
+
   function handleSignOut() {
     navigate('/');
     signOut();
@@ -34,10 +46,14 @@ export function Header() {
   return (
     <Container>
       <div className='left-elements'>
-        <Logo showAdmin={true} />
+        <img className='menu'
+          src={menu} alt=''
+          onClick={openMobileMenu} />
+        <Logo showAdmin={false} />
         <Input type='name'
           icon={FiSearch}
           placeholder='Busque por pratos ou ingredientes' />
+        <img className={`order ${user?.admin ? 'admin' : ''}`} src={order} alt='' />      
       </div>
       <div className='right-elements'>
         <Button onClick={ user?.admin
@@ -45,9 +61,10 @@ export function Header() {
           : navigateToViewOrdersPage }
           image={ !user?.admin ? order : '' }
           text= { user?.admin ? 'Novo prato' : 'Pedidos (0)'} />
-        <FiLogOut onClick={handleSignOut} 
-          size={22} color='#fff' />
+        <img src={logout} alt=''
+          onClick={handleSignOut} />
       </div>
+      <Menu name='menu'/>
     </Container>
   );
 }
