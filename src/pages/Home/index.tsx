@@ -32,6 +32,8 @@ export function Home(){
 
   const [dishes, setDishes] = useState<DishProps[]>([]);
 
+  const [text, setText] = useState<string>();
+
   useEffect(() => {
 
     async function fetchCategories(){
@@ -47,10 +49,23 @@ export function Home(){
     fetchCategories();
     fetchDishes();
   }, []);
+ 
+  useEffect(() => {
+
+    async function filterDishesByText(text: string) {
+      const response = await api.get(`/dishes?text=${text}`);
+      setDishes(response.data);
+    }
+
+    if (text) {
+      filterDishesByText(text);
+    }
+
+  }, [text]);
 
   return (
     <Container>
-      <Header />
+      <Header searchSetter={setText} />
       <Content>
         <main>
           <div className="banner">

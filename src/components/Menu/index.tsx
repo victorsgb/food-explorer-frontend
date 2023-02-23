@@ -13,9 +13,10 @@ import { FiSearch } from 'react-icons/fi';
 
 interface MobileMenuProps {
   name: string;
+  searchSetter?: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
-export function Menu({name}: MobileMenuProps) {
+export function Menu({name, searchSetter}: MobileMenuProps) {
 
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
@@ -34,6 +35,12 @@ export function Menu({name}: MobileMenuProps) {
     signOut();
   }
 
+  function handleSearchChange(event: any) {
+    if (searchSetter) {
+      searchSetter(event.target.value);
+    }
+  }
+
   return (
     <Container id={name}>
       <header>
@@ -47,7 +54,8 @@ export function Menu({name}: MobileMenuProps) {
         <main>
           <Input type='name'
               icon={FiSearch}
-              placeholder='Busque por pratos ou ingredientes' />
+              placeholder='Busque por pratos ou ingredientes'
+              onChange={handleSearchChange} />
           <ul>
             { user && user.admin && 
               <li className='poppins-regular-300' onClick={navigateToNewDishPage}>Novo prato</li> }

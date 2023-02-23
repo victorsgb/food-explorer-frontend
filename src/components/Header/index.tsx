@@ -13,7 +13,11 @@ import { Container } from './styles';
 import { logout, menu, order } from '../../assets';
 import { FiSearch } from 'react-icons/fi';
 
-export function Header() {
+interface HeaderProps {
+  searchSetter?: React.Dispatch<React.SetStateAction<string | undefined>>; 
+}
+
+export function Header({searchSetter}: HeaderProps) {
 
   const { user, signOut } = useAuth();
 
@@ -30,17 +34,18 @@ export function Header() {
   function openMobileMenu() {
 
     const modal = document.querySelector('dialog#menu') as HTMLDialogElement;
-
-    const content = document.querySelector('.content') as HTMLDivElement;
-    console.log({content});
-    content.style.overflowY = 'hidden';
-
     modal?.showModal();
   }
 
   function handleSignOut() {
     navigate('/');
     signOut();
+  }
+
+  function handleSearchChange(event: any) {
+    if (searchSetter) {
+      searchSetter(event.target.value);
+    }
   }
 
   return (
@@ -52,7 +57,8 @@ export function Header() {
         <Logo showAdmin={false} />
         <Input type='name'
           icon={FiSearch}
-          placeholder='Busque por pratos ou ingredientes' />
+          placeholder='Busque por pratos ou ingredientes'
+          onChange={handleSearchChange} />
         <img className={`order ${user?.admin ? 'admin' : ''}`} src={order} alt='' />      
       </div>
       <div className='right-elements'>
@@ -64,7 +70,8 @@ export function Header() {
         <img src={logout} alt=''
           onClick={handleSignOut} />
       </div>
-      <Menu name='menu'/>
+      <Menu name='menu'
+        searchSetter={searchSetter} />
     </Container>
   );
 }
