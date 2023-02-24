@@ -6,6 +6,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Versão em português
 
+### Deploy do projeto
+
+O deploy do projeto foi realizado na [Netlify](https://www.netlify.com/) e você pode acessá-lo por este [link](https://food-explorer-frontend.netlify.app/). Você será encaminhado para a página de SignIn, e de lá poderá se deslocar à página de SignUp. Porém, como não é possível ainda criar contas de admin pela plataforma, use essas credenciais caso queira acessar o projeto como tal: **email**: admin@email.com e **senha**: Qwerty-12345.
+
 ### Estrutura do projeto
 
 A pasta `src` contém o arquivo `index.tsx`, cuja função é inicializar a aplicação, suportada pelo framework React.
@@ -81,7 +85,7 @@ A pasta `src` contém o arquivo `index.tsx`, cuja função é inicializar a apli
 
 ### Como rodar este projeto localmente
 
-Você deve seguir estes passos simples. Primeiro, vá ao diretório de seu interesse e clone este repositório:
+Supondo que você já tenha o `git` e o `npm` na sua máquina local, você deve seguir estes passos simples. Primeiro, vá ao diretório de seu interesse e clone este repositório:
 
 > `git clone https://github.com/victorsgb/food-explorer-frontend`
 

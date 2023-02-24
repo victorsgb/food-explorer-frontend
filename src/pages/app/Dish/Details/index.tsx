@@ -144,17 +144,18 @@ export function DishDetails(){
                     </li>
                   ))}
                 </ul>
-                {user && user.admin === true && 
+                {user && Number(user.admin) === 1 && 
                   <Button onClick={() => navigateToDishEditPage(dishData.id)}
                     text='Editar prato' /> }
-                {user && user.admin === false &&
+                {user && Number(user.admin) === 0  &&
                   <div className='order-wrapper'>
                     <BiMinus size={18} onClick={handleReduceAmount} />
                     <span className='roboto-big-bold'>
                       {String(amount).padStart(2, '0')}
                     </span>
                     <BiPlus size={18} onClick={handleIncreaseAmount} />
-                    <Button text={`incluir - ${formatReaisAndCentsToBRLString(amount * Number(dishData.reais), amount * Number(dishData.cents))} `} />
+                    <Button text={`incluir - ${formatReaisAndCentsToBRLString(amount * Number(dishData.reais), amount * Number(dishData.cents))} `}
+                      onClick={() => alert('Função ainda não implementada!')} />
                   </div> }
               </div>
             </div> }

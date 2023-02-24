@@ -91,7 +91,7 @@ export const Content = styled.div`
 
         button {
           @media (min-width: 650px) {
-            max-width: 13.1rem;
+            max-width: 15.1rem;
           }
         }
         
@@ -99,6 +99,7 @@ export const Content = styled.div`
           display: flex;
           flex-direction: row;
           align-items: center;
+          justify-content: center;
           gap: 1.6rem;
 
           svg {
