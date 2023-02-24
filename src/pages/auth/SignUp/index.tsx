@@ -3,14 +3,14 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 // External services
-import { api } from '../../services/api';
+import { api } from '../../../services/api';
 
 // Custom components
-import { Logo } from '../../components/Logo';
-import { Warning } from '../../components/Warning';
-import { Input } from '../../components/Input';
-import { Button } from '../../components/Button';
-import { Modal } from '../../components/Modal';
+import { Logo } from '../../../components/Logo';
+import { Warning } from '../../../components/Warning';
+import { Input } from '../../../components/Input';
+import { Button } from '../../../components/Button';
+import { Modal } from '../../../components/Modal';
 
 // Styling related imports
 import { Container } from './styles';

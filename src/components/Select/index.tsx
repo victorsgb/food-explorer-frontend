@@ -3,7 +3,7 @@ import { Container } from './styles';
 
 // Type imports
 import { IconType } from 'react-icons/lib';
-import { CategoryProps } from '../../pages/Home';
+import { CategoryProps } from '../../pages/app/Home';
 
 interface InputProps extends React.HTMLProps<HTMLSelectElement> {
   label?: string;

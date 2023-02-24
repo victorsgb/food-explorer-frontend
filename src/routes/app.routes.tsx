@@ -2,10 +2,10 @@
 import { Routes, Route } from 'react-router-dom';
 
 // Custom pages
-import { Home } from '../pages/Home';
-import { DishDetails } from '../pages/Dish/Details';
-import { DishNew } from '../pages/Dish/New';
-import { DishEdit } from '../pages/Dish/Edit';
+import { Home } from '../pages/app/Home';
+import { DishDetails } from '../pages/app/Dish/Details';
+import { DishNew } from '../pages/app/Dish/New';
+import { DishEdit } from '../pages/app/Dish/Edit';
 import { NotFound } from '../pages/NotFound';
 
 export function AppRoutes(): JSX.Element {

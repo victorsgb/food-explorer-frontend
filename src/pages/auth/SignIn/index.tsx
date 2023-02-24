@@ -3,17 +3,17 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 // Custom components and hooks
-import { Logo } from '../../components/Logo';
-import { Warning } from '../../components/Warning';
-import { Input } from '../../components/Input';
-import { Button } from '../../components/Button';
-import { useAuth } from '../../hooks/auth';
+import { Logo } from '../../../components/Logo';
+import { Warning } from '../../../components/Warning';
+import { Input } from '../../../components/Input';
+import { Button } from '../../../components/Button';
+import { useAuth } from '../../../hooks/auth';
 
 // Styling related imports
 import { Container } from './styles';
 
 // Type related imports
-import { SignInProps } from '../../hooks/auth';
+import { SignInProps } from '../../../hooks/auth';
 
 export function SignIn(){
 

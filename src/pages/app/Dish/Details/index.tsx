@@ -3,20 +3,20 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
 // External services
-import { api } from '../../../services/api';
+import { api } from '../../../../services/api';
 
 // Custom components and hooks
-import { Header } from '../../../components/Header';
-import { Button } from '../../../components/Button';
-import { Footer } from '../../../components/Footer';
-import { useAuth } from '../../../hooks/auth';
+import { Header } from '../../../../components/Header';
+import { Button } from '../../../../components/Button';
+import { Footer } from '../../../../components/Footer';
+import { useAuth } from '../../../../hooks/auth';
 
 // Styling related imports
 import { Container, Content } from './styles';
 import { FiChevronLeft } from 'react-icons/fi';
 
 // Type imports
-import { DishProps } from '../../Dish/New';
+import { DishProps } from '../New';
 import { BiMinus, BiPlus } from 'react-icons/bi';
 
 export function DishDetails(){
@@ -144,10 +144,10 @@ export function DishDetails(){
                     </li>
                   ))}
                 </ul>
-                {user?.admin && 
+                {user && user.admin === true && 
                   <Button onClick={() => navigateToDishEditPage(dishData.id)}
                     text='Editar prato' /> }
-                {!user?.admin &&
+                {user && user.admin === false &&
                   <div className='order-wrapper'>
                     <BiMinus size={18} onClick={handleReduceAmount} />
                     <span className='roboto-big-bold'>

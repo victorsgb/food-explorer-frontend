@@ -2,8 +2,8 @@
 import { Routes, Route } from 'react-router-dom';
 
 // Custom pages
-import { SignIn } from '../pages/SignIn';
-import { SignUp } from '../pages/SignUp';
+import { SignIn } from '../pages/auth/SignIn';
+import { SignUp } from '../pages/auth/SignUp';
 import { NotFound } from '../pages/NotFound';
 
 export function AuthRoutes(): JSX.Element {

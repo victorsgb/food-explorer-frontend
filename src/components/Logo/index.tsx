@@ -22,10 +22,10 @@ export function Logo({ showAdmin }: LogoProps) {
       <div>
         <h1 className={ width > 650 
           ? 'roboto-bigger-bold'
-          : 'roboto-smaller-bold' }>
+          : 'roboto-giant-bold' }>
           food explorer
         </h1>
-        { user && user.admin && showAdmin &&
+        { user && user.admin === true && showAdmin &&
           <span className='roboto-smallest-regular'>
             admin
           </span> }

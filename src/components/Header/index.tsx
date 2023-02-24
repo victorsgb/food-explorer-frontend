@@ -59,7 +59,9 @@ export function Header({searchSetter}: HeaderProps) {
           icon={FiSearch}
           placeholder='Busque por pratos ou ingredientes'
           onChange={handleSearchChange} />
-        <img className={`order ${user?.admin ? 'admin' : ''}`} src={order} alt='' />      
+        <img className={`order ${user?.admin ? 'admin' : ''}`}
+          src={order} alt=''
+          onClick={() => alert('Função não implementada - ainda!')} />      
       </div>
       <div className='right-elements'>
         <Button onClick={ user?.admin

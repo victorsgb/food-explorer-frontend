@@ -85,6 +85,7 @@ export const Content = styled.div`
             padding: 4px 8px;
             background-color: ${({ theme }) => theme.dark[1000]};
             border-radius: 8px;
+            white-space: nowrap;
           }
         }
 

@@ -16,7 +16,7 @@ import { pencil, heart, right, left, plus, minus } from '../../assets';
 import { GoChevronRight } from 'react-icons/go';
 
 // Type imports
-import { DishProps } from '../../pages/Dish/New';
+import { DishProps } from '../../pages/app/Dish/New';
 
 interface DishCardProps {
   admin?: boolean;
@@ -96,7 +96,6 @@ export function DishCard({ admin, dishData, device }: DishCardProps){
     }
   }
 
-
   return (
     <Content className={device}>
       { admin
@@ -121,7 +120,7 @@ export function DishCard({ admin, dishData, device }: DishCardProps){
             </span>
             <img src={plus} alt='' onClick={handleIncreaseAmount} />
           </div>
-          <Button text='incluir' />
+          <Button text='incluir' onClick={() => alert('Função ainda não implementada!')} />
         </div> }
     </Content>
   );

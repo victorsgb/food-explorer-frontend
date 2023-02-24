@@ -3,18 +3,18 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 // External services
-import { api } from '../../../services/api';
+import { api } from '../../../../services/api';
 
 // Custom components and hooks
-import { Warning } from '../../../components/Warning';
-import { Modal } from '../../../components/Modal';
-import { Header } from '../../../components/Header';
-import { Input } from '../../../components/Input';
-import { Select } from '../../../components/Select';
-import { TagsWrapper } from '../../../components/TagsWrapper';
-import { TextArea } from '../../../components/TextArea';
-import { Button } from '../../../components/Button';
-import { Footer } from '../../../components/Footer';
+import { Warning } from '../../../../components/Warning';
+import { Modal } from '../../../../components/Modal';
+import { Header } from '../../../../components/Header';
+import { Input } from '../../../../components/Input';
+import { Select } from '../../../../components/Select';
+import { TagsWrapper } from '../../../../components/TagsWrapper';
+import { TextArea } from '../../../../components/TextArea';
+import { Button } from '../../../../components/Button';
+import { Footer } from '../../../../components/Footer';
 
 // Styling related imports
 import { Container, Content } from './styles';

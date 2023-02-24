@@ -57,7 +57,7 @@ export function Menu({name, searchSetter}: MobileMenuProps) {
               placeholder='Busque por pratos ou ingredientes'
               onChange={handleSearchChange} />
           <ul>
-            { user && user.admin && 
+            { user && user.admin === true && 
               <li className='poppins-regular-300' onClick={navigateToNewDishPage}>Novo prato</li> }
             <li className='poppins-regular-300' onClick={handleSignOut}>Sair</li>
           </ul>

@@ -14,12 +14,11 @@ interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
   text: string;
   image: string;
   icon: IconType;
-  kind: string;
-  children: JSX.Element | JSX.Element[];
+  kind: 'delete' | undefined;
   isLoading: boolean;
 }
 
-export function Button({ text, image, icon: Icon, isLoading, kind, children, ...rest }: ButtonProps | any) {
+export function Button({ text, image, icon: Icon, isLoading, kind, ...rest }: ButtonProps | any) {
   return (
     <Container className={kind} {...rest} >
       { !isLoading && image &&
@@ -30,7 +29,6 @@ export function Button({ text, image, icon: Icon, isLoading, kind, children, ...
         <span className='poppins-medium-100'>
           {text}
         </span> }
-      { !isLoading && children}
       { isLoading && <Loading />}
     </Container>
   );

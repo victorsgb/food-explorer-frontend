@@ -2,18 +2,18 @@
 import { useEffect, useState } from 'react';
 
 // External services
-import { api } from '../../services/api';
+import { api } from '../../../services/api';
 
 // Custom components and hooks
-import { Header } from '../../components/Header';
-import { DishCardsWrapper } from '../../components/DishCardsWrapper';
-import { Footer } from '../../components/Footer';
-import { useAuth } from '../../hooks/auth';
-import useWindowDimensions from '../../hooks/windowDimensions';
+import { Header } from '../../../components/Header';
+import { DishCardsWrapper } from '../../../components/DishCardsWrapper';
+import { Footer } from '../../../components/Footer';
+import { useAuth } from '../../../hooks/auth';
+import useWindowDimensions from '../../../hooks/windowDimensions';
 
 // Styling related imports
 import { Container, Content } from './styles';
-import { picture } from '../../assets';
+import { picture } from '../../../assets';
 
 // Type imports
 import { DishProps } from '../Dish/New';
