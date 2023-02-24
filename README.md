@@ -28,31 +28,56 @@ A pasta `src` contém o arquivo `index.tsx`, cuja função é inicializar a apli
 
 `components` contém diversos componentes customizados, que são usados em lugares diversos da aplicação:
 
-`Loading`...
+`Logo` - componente cuja função é exibir o logotipo do FoodExplorer, dependendo das dimensões do dispositivo em uso e das credenciais do usuário. Conta com apenas uma propriedade:
+> **showAdmin**, do tipo *boolean*, que tem por função indicar se a logotipo deve ser alterada para refletir o caso do usuário ser *admin*.
+
+`Loading` - componente inspirado no achado [aqui neste link](https://contactmentor.com/how-to-add-loading-spinner-react-js/), para prover um efeito visual de espera ao usuário, ao fazer requisições ao servidor;
 
 `Button` - componente muito usado, que renderiza um botão com estilo próprio, que tem as seguintes propriedades:
 > **text**, do tipo *string*, que é o texto a ser renderizado indicando a função do botão para o usuário; **image**, do tipo *string* ou **icon** do tipo *IconType*, que renderiza uma imagem ou ícone ao lado do texto; **kind**, do tipo *'delete' | undefined* que define a cor de fundo do botão, para vermelho, quando undefined, ou preto, quando do tipo 'delete'; **isLoading** de tipo *boolean*, que serve para renderizar o componente `Loading` sempre que o estado da página atual for dado como em carregamento.
+> Este componente importa e utiliza outro: `Loading`.
 
-`Input`...
+`Input` - componente bastante versátil, que interage com o usuário final de diversas formas, a depender do tipo que este for declarado, conforme as propriedades a seguir:
+> **type**, do tipo *'name' | 'email' | 'password' | 'file' | 'money'*, que tem a função de determinar qual o tipo de dado de entrada permitido ao usuário, assim como se renderizar de maneira adequada; **label**, do tipo *string*, cuja função é prover uma etiqueta que sirva para identificar o tipo de input; **placeholder**, do tipo *string*, que fornece um texto de exemplo ao usuário, para facilitar a inserção de dados; e **icon**, do tipo *IconType*, que permite exibir um ícone ao lado da **label**.
 
-`Select`...
+`Select` - componente usado especificamente para permitir a seleção das entradas de categorias por parte do usuário, que vem com as seguintes propriedades:
+> **label**, do tipo *string*, para prover identificação ao componente; **icon**, do tipo *IconType*, para exibição de ícone ao lado da **label**, e **options**, do tipo *CategoryProps[]*, para receber os objetos contendo as opções disponíveis para seleção.
 
-`TextArea`...
+`TextArea` - componente semelhante ao `Input`, embora limitado a receber apenas um tipo de dado de entrada, do tipo texto. Sua diferença é que permite a ocorrência de quebra de linha. Este componente contém as seguintes propriedades:
+> **label**, do tipo *string*, cuja função é prover uma etiqueta que sirva para identificar este componente e **placeholder**, do tipo *string*, que fornece um texto de exemplo ao usuário, para facilitar a inserção de dados;
 
-`Modal`...
+`Warning` - componente usado para exibir mensagens para o usuário, de maneira mais elegante que um simples `alert(...)` com estilização padrão do navegador (e sem pausar a aplicação até que o usuário confirme), que conta com as seguintes propriedades:
+> **type**, do tipo *'api-bad-response' | 'password-issue'*, para indicar o tipo de alerta a ser enviado, o primeiro tipo referente à mensagens de erro recebidas do servidor, e o segundo tipo mostrar os requisitos de senha forte que foram atendidos, em tempo real; **response**, do tipo *string*, que recebe a mensagem em si do servidor, quando **type** do tipo *'api-bad-response'*; **password**, do tipo *string*, que recebe a senha sendo digitada em tempo real, para que haja a validação se esta atende aos critérios de senha forte estabelecidos, quando este componente tem o *type* do tipo *'password-issue'*; e **passwordIssueSetter**, que recebe um setter de estado criado com uso da hook `useState` do React, para modificação de estado declarado fora do escopo deste componente, a fim de responder se a senha atendeu, ou não, os critérios estabelecidos.
 
-`Warning`...
+`Modal` - componente semelhante ao `Warning`, também usado para exibir mensagens para o usuário, de maneira mais elegante que um simples `alert(...)` com estilização padrão do navegador, mas com função de ou informar algo, ou solicitar a confirmação de algo, por parte do usuário. O componente tem as seguintes propriedades:
+> **type**, do tipo *'inform' | 'confirm'*, que indica se o componente terá função apenas de informar algo, ou se exigirá a confirmação do usuário para que determinada ação aconteça; **name**, do tipo *string*, que serve para identificar este componente, permitindo assim seu acesso na DOM; **message**, do tipo *string*, que exibe a mensagem seja para informar ou solicitar a confirmação de algo; **userDecisionSetter**, que recebe um setter de estado criado com uso da hook `useState` do React, para modificação de estado declarado fora do escopo deste componente. Essa propriedade deve ser usada em conjunto com **type** igual a *'confirm'*, pois é este estado que é modificado em função da ação de confirmação, ou não, do usuário;
+> Este componente importa e utiliza outro: `Button`.
+
+`Footer` - componente para exibir o rodapé das páginas da subpasta `app`.
+> Este componente importa e utiliza outro: `Logo`.
+
+`Menu` - componente que serve para renderizar o menu, caso o navegador usado pelo usuário tenha dimensões compatíveis com dispositivos móveis ou esteja usando estes tipos de dispositivos. Conta com as seguintes propriedades:
+> **name**, do tipo *string*, para permitir a identificação e acesso deste modal por parte da DOM; e **searchSetter**, que recebe um setter de estado criado com uso da hook `useState` do React, para modificação de estado declarado fora do escopo deste componente. É usado para que os textos inseridos no `Input` que consta nesse componente altere esse estado de escopo maior.
+> Este componente importa e utiliza outros: `Input` e `Footer`.
 
 `Header` - componente que renderiza o cabeçalho de todas as páginas da subpasta `app`, que tem a seguinte propriedade:
-> **searchSetter**, que recebe um setter de estado criado com uso da hook `useState` do React, que permite que o texto inserido no componente `Input` presente aqui seja passado ao estado que está num escopo maior que o deste componente em si.
+> **searchSetter**, que recebe um setter de estado criado com uso da hook `useState` do React, para modificação de estado declarado fora do escopo deste componente. É usado para que os textos inseridos no `Input` que consta nesse componente altere esse estado de escopo maior.
+> Este componente importa e utiliza outros: `Logo`, `Menu`, `Button` e `Input`.
 
-`Footer`...
+`TagsWrapper` - componente utilizado para que o usuário *admin* possa criar e/ou deletar ingredientes de determinado prato, ao acessar as páginas `app/Dish/New` e `app/Dish/Edit`. Conta com as seguintes propriedades:
+> **className**, do tipo *string*, que permite a identificação e acesso deste componente na DOM; **label**, do tipo *string*, que serve para identificar este componente para o usuário; **tags**, do tipo *string[]*, que recebe um array de tags para serem renderizadas; e **tagsSetter**, que recebe um setter de estado criado com uso da hook `useState` do React, a fim de atualizar estado de escopo maior que o deste componente.
+> Este componente declara e faz uso de outro: `Tag`.
+>> `Tag` - componente utilizado para renderizar individualmente em tela cada tag presente no componente `TagsWrapper`, que recebe as seguintes propriedades: **name**, do tipo *string*, para exibir em tela o nome do ingrediente; **tagsSetter**, o mesmo objeto recebido pela `TagsWrapper`, que passa para todas as `Tags` individuais, a fim de que seja possível atualizar estado de escopo maior que o destes componentes, a fim de permitir a criação ou deleção de ingredientes.
 
-`TagsWrapper`...
+`DishCardsWrapper` - componente utilizado para exibir os pratos na página `app/Home`, filtrando os pratos por categoria. Este componente conta com as seguintes propriedades:
+> **category**, do tipo *string*, que renderiza o nome da categoria dos pratos em questão; **admin**, do tipo *boolean*, que serve para modificar o estilo e opções nos pratos, em função do usuário ser ou não *admin*; **dishesData**, do tipo *DishProps[]*, que recebe os dados de cada prato em formato de array de objetos, a fim de que cada objeto corresponda à uma carta individual, na forma do componente `DishCard`, a ser explicado a seguir:
+>> `DishCard` é um componente para renderização de cada prato individual, que conta com as seguintes propriedades: **admin**, do tipo *boolean*, que serve para customizar a carta do prato em função do usuário ser ou não *admin*; **dishData**, do tipo *DishProps*, que recebe os dados de um prato em si, a fim de serem exibidos; e **device**, do tipo *'desktop' | 'mobile'*, que serve para estilizar também alguns aspectos da carta do prato em função das dimensões do dispositivo sendo usado pelo usuário.
+> Este componente importa e utiliza outro: `Button`.
 
-`DishCardsWrapper`...
-
-`SignOutModal`...
+`SignOutModal` - componente semelhante ao `Modal`, mas com função específica: questionar o usuário, de quando em quando, se deseja manter a sessão corrente aberta. Caso não haja nenhuma confirmação em 60 segundos, o usuário é desconectado automaticamente. Conta com as seguintes propriedades:
+> **name**, do tipo *string*, para permitir a identificação e acesso deste componente pela DOM; **message**, do tipo *string*, que exibe a mensagem de interesse ao usuário;  **userDecisionSetter**, que recebe um setter de estado criado com uso da hook `useState` do React, para modificação de estado declarado fora do escopo deste componente. É este estado que é modificado em função da ação de confirmação, ou não, do usuário;
+**modalOpenTracker**, do tipo *number*, que tem como objetivo saber o momento exato em que este componente foi exibido em tela, a fim de iniciar a contagem de 60 segundos de espera por uma reação do usuário.
+> Este componente importa e utiliza outro: `Button`.
 
 ### Como rodar este projeto localmente
 

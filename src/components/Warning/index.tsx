@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Container } from './styles';
 
 interface WarningProps {
-  type: 'api-bad-response' | 'api-wait-response' | 'password-issue';
+  type: 'api-bad-response' | 'password-issue';
   response?: string;
   password?: string;
   passwordIssueSetter?: React.Dispatch<React.SetStateAction<boolean>>; 
@@ -87,7 +87,7 @@ export function Warning({type, response, password, passwordIssueSetter}: Warning
   return (
     <Container>
         <div className={type}>
-          { type !== 'password-issue' && 
+          { type === 'api-bad-response' && 
             <h2 className='poppins-medium-100'>
               <span>{response}</span>
             </h2> }

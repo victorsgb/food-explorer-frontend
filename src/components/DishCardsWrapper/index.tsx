@@ -132,7 +132,7 @@ export interface DishCardsWrapperProps {
   dishesData: DishProps[]
 }
 
-interface SliderButtonProps {
+interface DishCardsWrapperButtonProps {
   visible?: boolean;
   height?: number;
 }
@@ -143,7 +143,7 @@ export function DishCardsWrapper({ category, admin, dishesData }: DishCardsWrapp
 
   const { width } = useWindowDimensions();
 
-  const [sliderButton, setSliderButton] = useState<SliderButtonProps>({});
+  const [sliderButton, setSliderButton] = useState<DishCardsWrapperButtonProps>({});
 
   useEffect(() => {
 
