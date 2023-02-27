@@ -17,6 +17,7 @@ export const Content = styled.div`
   width: 100%;
   
   overflow-y: auto;
+  overflow-x: hidden;
 
   main {
     min-height: 100vh;
@@ -34,6 +35,8 @@ export const Content = styled.div`
       display: flex;
       justify-content: center;
   
+      overflow-x: auto;
+
       img {
         width: 50vw;
         align-self: flex-end;
@@ -41,7 +44,7 @@ export const Content = styled.div`
   
       div.text {
         align-self: center;
-        color: ${({ theme }) => theme.light[300]}
+        color: ${({ theme }) => theme.light[300]};
       }
   
       @media (max-width: 650px) {

@@ -9,11 +9,11 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 3%;
+
+  overflow-x: auto;
   
   div.logo {
     * {
-      font-size: 2.4rem;
-      line-height: 'auto';
       color: ${({ theme }) => theme.light[700]};
       filter: grayscale(1);
     }  
@@ -21,5 +21,7 @@ export const Container = styled.div`
 
   p {
     color: ${({ theme }) => theme.light[200]};
+    white-space: nowrap;
+    margin-left: 8px;
   }
 `;

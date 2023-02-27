@@ -37,13 +37,6 @@ export const Container = styled.div`
       }
     }
 
-    div.logo {
-      * {
-        font-size: 2.4rem;
-        line-height: 'auto';
-      }
-    }
-
     div#name {
       @media (max-width: 650px) {
         display: none;

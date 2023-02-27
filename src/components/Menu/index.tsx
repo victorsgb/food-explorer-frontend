@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 // Custom components and hooks
 import { Input } from '../Input';
+import { Footer } from '../Footer';
 import { useAuth } from '../../hooks/auth';
 
 // Styling related imports
@@ -65,6 +66,7 @@ export function Menu({name, searchSetter}: MobileMenuProps) {
         </main>
       </div>
       <div className='empty-space' />
+      <Footer />
     </Container>
   )
 }
