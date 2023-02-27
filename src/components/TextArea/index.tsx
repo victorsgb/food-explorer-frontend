@@ -17,7 +17,7 @@ export function TextArea({ label, placeholder, ...rest }: TextAreaProps){
         </label> }
       <div className={`textarea-wrapper`}> 
       <textarea name={label}
-        rows={50}
+        maxLength={120}
         className='roboto-small-regular'
         placeholder={placeholder} {...rest} />
       </div>

@@ -1,12 +1,23 @@
 import styled from 'styled-components';
 
-export const Container = styled.dialog`
+export const Container = styled.nav`
 
-  background-color: red;
-  height: 100%;
-  width: 100vw;
-  margin: 0 auto;
+  display: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  transform: translate(-100%, 0);
+  overflow-x: hidden;
+
+  font-size: 1.6rem;
+
+  border: none;
+  height: 100vh;
+  width: 100%;
   background-color: ${({ theme }) => theme.dark[400]};
+  z-index: 2;
 
   header {
     height: 10.4rem;

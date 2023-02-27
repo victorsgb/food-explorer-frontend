@@ -10,11 +10,9 @@ export const Container = styled.dialog`
   transform: translate(-50%, 0);
 
   font-size: 1.6rem;
-
-  border: 1px solid ${({ theme }) => theme.tints.cake[100]};
-  border-bottom: 3px solid ${({ theme }) => theme.light[200]};
+  
+  border: none;
   border-radius: 5px;
-  box-shadow: 0 0 1em rgb(0 0 0 /.3);
 
   &::backdrop {
     background-color: rgb(0 0 0 /.5);

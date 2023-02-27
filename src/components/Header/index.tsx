@@ -33,8 +33,10 @@ export function Header({searchSetter}: HeaderProps) {
 
   function openMobileMenu() {
 
-    const modal = document.querySelector('dialog#menu') as HTMLDialogElement;
-    modal?.showModal();
+    const modal = document.querySelector('nav#menu') as HTMLElement;
+    if (modal) {
+      modal.style.display = 'block';
+    }
   }
 
   function handleSignOut() {

@@ -38,6 +38,7 @@ export function SignOutModal({name, message, userDecisionSetter, modalOpenTracke
       userDecisionSetter(true);
     }
     dialog?.close();
+
     setActive(false);
   }, [name, userDecisionSetter]);
 
@@ -72,7 +73,7 @@ export function SignOutModal({name, message, userDecisionSetter, modalOpenTracke
 
   return (
     <Container id={name} {...rest}>
-      <p className='roboto-smaller-regular'>{message}</p>
+      <p className='poppins-medium-100'>{message}</p>
       <div className='buttons-wrapper'>
         <Button onClick={handleClickOnConfirmCancelButton}
           icon={GiConfirmed}
@@ -81,7 +82,7 @@ export function SignOutModal({name, message, userDecisionSetter, modalOpenTracke
           icon={GiCancel}
           text='Sair' />
       </div>
-      <p className='roboto-smaller-regular'>Desconectando em {timer} segundos...</p>
+      <p className='poppins-medium-100'>Desconectando em {timer} segundos...</p>
     </Container>
   )
 }

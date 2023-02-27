@@ -11,8 +11,8 @@ export const Container = styled.dialog`
 
   font-size: 1.6rem;
 
+  border: none;
   border-radius: 5px;
-  box-shadow: 0 0 1em rgb(0 0 0 /.3);
   width: 80%;
 
   &::backdrop {

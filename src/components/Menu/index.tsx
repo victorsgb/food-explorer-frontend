@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 // Custom components and hooks
 import { Input } from '../Input';
 import { useAuth } from '../../hooks/auth';
-import { Footer } from '../Footer';
 
 // Styling related imports
 import { Container } from './styles';
@@ -22,8 +21,10 @@ export function Menu({name, searchSetter}: MobileMenuProps) {
   const navigate = useNavigate();
 
   function handleQuitMenu(event: any) {
-    const modal = document.querySelector('dialog#menu') as HTMLDialogElement;
-    modal?.close();
+    const modal = document.querySelector('nav#menu') as HTMLElement;
+    if (modal) {
+      modal.style.display = 'none';
+    }
   }
 
   function navigateToNewDishPage() {
@@ -57,14 +58,13 @@ export function Menu({name, searchSetter}: MobileMenuProps) {
               placeholder='Busque por pratos ou ingredientes'
               onChange={handleSearchChange} />
           <ul>
-            { user && user.admin === true && 
+            { user && Number(user.admin) === 1 && 
               <li className='poppins-regular-300' onClick={navigateToNewDishPage}>Novo prato</li> }
             <li className='poppins-regular-300' onClick={handleSignOut}>Sair</li>
           </ul>
         </main>
       </div>
       <div className='empty-space' />
-      <Footer />
     </Container>
   )
 }

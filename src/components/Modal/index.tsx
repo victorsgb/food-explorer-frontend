@@ -37,7 +37,7 @@ export function Modal({name, type, message, userDecisionSetter, ...rest}: ModalP
 
   return (
     <Container id={name} {...rest}>
-      <p className='roboto-smaller-regular'>{message}</p>
+      <p className='poppins-medium-100'>{message}</p>
       <div className='buttons-wrapper'>
         { type === 'inform' &&
           <Button onClick={handleClickOnInformOKButton}
