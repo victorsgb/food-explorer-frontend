@@ -1,89 +1,125 @@
 # FoodExplorer Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). This document is written first in English and then in Portuguese.
+ Frontend web application of a fictional restaurant. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). This document is written first in English and then in Portuguese.
+
+<p align="center">
+  <img src="https://img.shields.io/github/last-commit/victorsgb/food-explorer-frontend?style=plastic"/>
+  <img src="https://img.shields.io/github/repo-size/victorsgb/food-explorer-frontend?color=red&style=plastic"/>
+  <img src="https://img.shields.io/github/languages/count/victorsgb/food-explorer-frontend?color=yellow&style=plastic">
+  <img src="https://img.shields.io/github/languages/top/victorsgb/food-explorer-frontend?style=plastic">
+</p>
 
 ## English version
 
-### Deploy the project
+This is the final training challenge in the [Rocketseat Explorer program](https://www.rocketseat.com.br/explorer), which involves building a front-end web application using the technologies of the [React ecosystem](https://pt-br.reactjs.org/) starting from a [Figma layout](https://www.figma.com/file/LOMJWIopGI0VwmAU9aT2YS/food-explorer-v2?node-id=5%3A980&t=ufciRiJWyCbfaa5Q-1).
 
-The project was deployed on [Netlify](https://www.netlify.com/), and you can access it through this [link](https://food-explorer-frontend.netlify.app/). You will be redirected to the SignIn page. You can create non-admin users. Use these credentials if you want to access the project as admin: **email**: admin@email.com and **password**: Qwerty-12345.
+The project refers to the website of a fictional restaurant called FoodExplorer, where you can log in as an administrator, edit and delete dishes, but also as a normal user placing orders. This project makes requests for its own API, whose construction is also part of this challenge and whose repository is also [hosted on Github](https://github.com/victorsgb/food-explorer-backend).
+
+All the mandatory requirements of the challenge have been met, and as an extra, the following features have been added:
+
+- Views of **server error messages**;
+- Dialogs for **visual feedback or confirmation** by the administrator when registering, editing and/or deleting dishes;
+- Dialog of **password validation** when registering a new user to assist in the creation of secure passwords;
+- **Loading feature** at buttons to provide visual feedback to users while waiting for server responses;
+- **Error 404 page** to be displayed if the user accesses forbidden or non-existent routes.
+
+**What's to come**:
+
+- Full functionality for adding/removing orders in the shopping cart
+- Payment page
+
+### Project deploy
+
+The project has been made available on [Netlify](https://www.netlify.com/), and you can access it through this [link](https://food-explorer-frontend.netlify.app/). You will be redirected to the login page. You can create non-administrator users. Use these credentials if you want to access the project as an administrator: **Email**: admin@email.com and **Password**: Qwerty-12345. *The first request to the server may have a longer delay than usual, because it becomes inactive after a certain time without use.*
+
+### Dependencies
+
+This project contains the following dependencies:
+
+- **[`axios`](https://www.npmjs.com/package/axios), [compatible with version](https://stackoverflow.com/questions/22343224/whats-the-difference-between-tilde-and-caret-in-package-json) *1.3.2***: used to communicate with the server;
+- **[`react`](https://reactjs.org/), compatible with version *18.2.0***: used to create interactive user interfaces and web applications quickly and efficiently with significantly less code than standard JavaScript;
+- **[`react-dom`](https://www.npmjs.com/package/react-dom), compatible with version *18.2.0***: Provides DOM specific methods that can be used at the top level of a web application to allow efficient management of the DOM elements of the page;
+- **[`react-icons`](https://www.npmjs.com/package/react-icons), compatible with version *4.7.1***: provides some of the icons used in this project;
+- **[`react-router-dom`](https://www.npmjs.com/package/react-router-dom), compatible with version *6.8.1***: provides the application routes depending on whether the user is authenticated or not;
+- **[`react-scripts`](https://www.npmjs.com/package/react-scripts), version *5.0.1***: provides scripts to run the build tools needed to programmatically convert React JSX syntax to plain JavaScript;
+- **[`react-simply-carousel`](https://www.npmjs.com/package/react-simply-carousel), compatible with version *8.5.1***: used to create the carousel for displaying dishes in the fictional restaurant;
+- **[`styled-components`](https://www.npmjs.com/package/styled-components), compatible with version *5.3.6***: used to style all components in this project.
 
 ### Project structure
 
-The `src` folder contains the `index.tsx` file, whose function is to initialize the application, supported by the React framework.
+The `src` folder contains the `index.tsx` file, whose function is to initialize the application supported by the React framework.
 
-`assets` contains the svg files used throughout the application, as well as the `index.tsx` which makes the declaration of these svg files, for later export where necessary;
+the `assets` folder contains the svg files used throughout the application, as well as the `index.tsx` file that makes the declaration of these svg files to export them later if needed;
 
-`hooks` contains the definition of two custom hooks: `auth.tsx`, which provides user information when authenticated (making use of `useContext` from **React**), and `windowDimensions.tsx` dynamically provides the dimensions of the viewport of the device in use;
+the `hooks` folder contains the definition of two custom hooks: `auth.tsx`, which provides user information during authentication (using `useContext` from **React**), and `windowDimensions.tsx`, which dynamically provides the dimensions of the viewport of the device in use;
 
-`services` contains the file that defines the communication with the server, hosted at [Render](https://food-explorer-backend.onrender.com/);
+the `services` folder contains the file that defines the communication with the server, hosted at [Render](https://food-explorer-backend.onrender.com/);
 
-`styles` contains styling files with classes defined in **css** for defining fonts, as well as objects in the **theme.ts** file to provide the color palette;
+`styles` contains styling files with classes defined in **css** to define fonts, and objects in the **theme.ts** file to provide the color palette;
 
-`routes` contains files that define the application's routes, depending on whether the user is authenticated (`app.routes.tsx`) or not (`auth.routes.tsx`), in addition to an `index.tsx` file to define the logic of which routes to provide depending on this condition;
+`routes` contains files that define the application's routes depending on whether the user is authenticated (`app.routes.tsx`) or not (`auth.routes.tsx`), and an `index.tsx` file that defines the logic of the routes that are provided depending on this condition;
 
-`pages` contains subfolder containing the application's pages, as the name implies. The `app` subfolder has pages to be accessed by an authenticated user, and the `auth` subfolder contains pages to be accessed by a regular user. All folders are built as custom React components.
+`pages`, as the name suggests, contains subfolders with pages of the application. The `app` subfolder contains pages that can be accessed by an authenticated user, and the `auth` subfolder contains pages that can be accessed by a normal user. All folders are created as custom React components.
 
-> The subfolder of `auth` are `SignIn` and `SignUp`. They are intended for authentication and account creation, respectively.
-> The subfolder of `app` are `Home` and `Dish`. They are intended for viewing and searching dishes and for creating (`Dish/New`), editing (`Dish/Edit`) and viewing (`Dish/Details` ) of the information for specific dishes, respectively.
-> In addition to these subfolder (`auth` and `app`), there is a page (`NotFound`) to be rendered whenever the user accesses a prohibited or nonexistent page, indicating a path to access the main page, depending on whether the user is authenticated, or not.
+> The subfolders of `auth` are `SignIn` and `SignUp`. They are for authentication and account creation respectively.
+> The subfolders of `app` are `Home` and `Dish`. They are intended for viewing and searching dishes, as well as creating (`Dish/New`), editing (`Dish/Edit`), and viewing (`Dish/Details` ) information about specific dishes.
+> In addition to these subfolders (`auth` and `app`), there is a page (`NotFound`) which is displayed whenever the user accesses a forbidden or non-existent page, and which gives a path to access the main page, depending on whether the user is authenticated or not.
 
-`components` contains several custom components, which are used in different places in the application:
+`components` contains several custom components that are used in different places in the application:
 
-`Logo` - component whose function is to display the FoodExplorer logo, depending on the dimensions of the device in use and the user's credentials. It has only one property:
-> **showAdmin**, of type *boolean*, whose function is to indicate whether the logo should be changed to reflect the case that the user is *admin*.
+`Logo` - a component whose function is to display the FoodExplorer logo, depending on the dimensions of the device used and the user's credentials. It has only one property:
+> **showAdmin**, of type *boolean*, whose function is to indicate whether the logo should be changed to reflect the case where the user is *admin*.
 
-`Loading` - component inspired by the find [here in this link](https://contactmentor.com/how-to-add-loading-spinner-react-js/), to provide a visual waiting effect to the user when doing server requests;
+`Loading` - a component inspired by [content from this link](https://contactmentor.com/how-to-add-loading-spinner-react-js/), to provide the user with a visual waiting effect for server requests;
 
-`Button` - widely used component which renders a self-styled button, which has the following properties:
-> **text**, of type *string*, which is the text to be rendered indicating the function of the button for the user; **image**, of type *string*, or **icon** of type *IconType*, which renders an image or icon next to the text; **kind**, of type *'delete' | undefined* that defines the background color of the button, to red, when it is undefined or black, when of type 'delete'; **isLoading** of type *boolean*, which serves to render the `Loading` component whenever the state of the current page is given as loading.
-> This component imports and uses another one: `Loading`.
+`Button` - widely used component rendering a self-designed button with the following properties:
+> **text**, of type *string*, which is the text to be displayed indicating the function of the button for the user; **image**, of type *string*, or **icon** of type *IconType*, which represents an image or icon next to the text; **kind**, of type *'delete' | undefined*, which specifies the background color of the button, red, if it is undefined, or black, if it is of type 'delete'; **isLoading**, of type *boolean*, which is used to display the `Loading` component when the state of the current page is specified as loading.
+> This component imports and uses another component: `Loading`.
 
-`Input` - a very versatile component, which interacts with the end user in different ways, depending on the type it is declared, according to the following properties:
-> **type**, of type *'name' | 'email' | 'password' | 'file' | 'money'*, which has the function of determining what type of input data is allowed to the user, as well as rendering it properly; **label**, of type *string*, whose function is to provide a label that serves to identify the type of input; **placeholder**, of type *string*, which provides an example text to the user, to facilitate the insertion of data; and **icon**, of type *IconType*, which allows displaying an icon beside the **label**.
+`Input` - a very versatile component that interacts with the end user in different ways, depending on the type it is declared, according to the following properties:
+> **type**, of type *'name' | 'email' | 'password' | 'file' | 'money'*, which has the function of determining what kind of input data is allowed to the user, as well as rendering it correctly; **label**, of type *string*, whose function is to provide a label used to identify the type of input; **placeholder**, of type *string*, which provides the user with a sample text to facilitate the input of data; and **icon**, of type *IconType*, which allows the display of an icon next to the **label**.
 
-`Select` - component used specifically to allow user selection of category entries, which comes with the following properties:
-> **label**, of type *string*, to provide identification to the component; **icon**, of type *IconType*, to display the icon next to the **label**, and **options**, of type *CategoryProps[]*, to receive objects containing the options available for selection .
+`Select` - component that is specifically designed to allow the user to select category entries and has the following properties:
+> **label**, of type *string*, to identify the component; **icon**, of type *IconType*, to display the icon next to the **label**; and **options**, of type *CategoryProps[]*, to receive objects containing the options available for selection .
 
-`TextArea` - component similar to `Input`, although limited to receiving only one input data type, text type. Its difference is that it allows the occurrence of a line break. This component contains the following properties:
-> **label**, of type *string*, whose function is to provide a label that serves to identify this component, and **placeholder**, of type *string*, which provides an example text to the user, to facilitate the data entry;
+`TextArea` - a component similar to the `Input` component, but capable of receiving only one type of input data, namely text. Its difference is that it allows the occurrence of line breaks. This component contains the following properties:
+> **label**, of type *string*, whose function is to provide a label used to identify this component, and **placeholder**, of type *string*, which provides the user with a sample text to facilitate data entry;
 
-`Warning` - component used to display messages to the user, in a more elegant way than a simple `alert(...)` with default browser styling (and without pausing the application until the user confirms), which has the following properties:
-> **type**, of type *'api-bad-response' | 'password-issue'*, to indicate the type of alert to be sent, the first type referring to error messages received from the server, and the second type showing the strong password requirements that were met, in real-time; **response**, of type *string*, which receives the message itself from the server, when **type** of type *'api-bad-response'*; **password**, of type *string*, which receives the password being typed in real-time, so that there is validation if it meets the established strong password criteria when this component has *type* of type *'password -issue'*; and **passwordIssueSetter**, which receives a state setter created using React's `useState` hook, for modifying a state declared outside the scope of this component, to answer whether or not the password met the established criteria.
+`Warning` - component used to display messages to the user, in a more elegant way than a simple `alert(...)` with standard browser styling (and without stopping the application until the user acknowledges it); this component has the following properties:
+> **type**, of type *'api-bad-response' | 'password-issue'*, to indicate the type of alert to send, the first type referring to error messages received from the server, and the second type indicating secure password requirements that have been met in real-time; **response**, of type *string*, which receives the alert itself from the server when **type** is of type *'api-bad-response'*; **password**, of type *string*, which receives the entered password in real time so that it can be checked whether it meets the specified criteria for a  secure password if this component has *type* of type *'password -issue'*; and **passwordIssueSetter**, which receives a state setter created with React's `useState` hook to change a state declared outside the scope of this component to answer whether the password meets the specified criteria or not.
 
-`Modal` - component similar to `Warning`, also used to display messages to the user, in a more elegant way than a simple `alert(...)` with standard browser styling, but with the function of either informing something or ask the user to confirm something. The component has the following properties:
-> **type**, of type *'inform' | 'confirm'*, which indicates whether the component will only inform something, or whether it will require user confirmation for a certain action to take place; **name**, of type *string*, which serves to identify this component, thus allowing its access in the DOM; **message**, of type *string*, which displays the message either to inform or request confirmation of something; **userDecisionSetter**, which receives a state setter created using React's `useState` hook, for modifying state declared outside the scope of this component. This property must be used in conjunction with **type** equal to *'confirm'*, as it is this state that is modified depending on whether the user confirms or not;
-> This component imports and uses another: `Button`.
+`Modal` - a component similar to the `Warning` component, also used to display messages to the user in a more elegant way than a simple `alert(...)` with standard browser styling, but with the function of either telling something or asking the user to confirm something. The component has the following properties:
+> **type**, of type *'inform' | 'confirm'*, which indicating whether the component just informs or whether it needs user confirmation for a certain action; **name**, of type *string*, used to identify this component and thus allow access to it in [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model); **message**, of type *string*, which displays the message to either inform or request confirmation; **userDecisionSetter**, which receives a state setter created with React's `useState` hook to change a state declared outside the scope of this component. This property must be used in conjunction with **type** equal to *'confirm'*, as it is this state that will be changed depending on whether the user confirms or not;
+> This component imports and uses another one: `Button`.
 
 `Footer` - component to display the footer of the pages in the `app` subfolder.
-> This component imports and uses another one: `Logo`.
+> This component imports and uses another component: `Logo`.
 
-`Menu` - a component that serves to render the menu, if the browser used by the user has dimensions compatible with mobile devices or is using these types of devices. It has the following properties:
-> **name**, of type *string*, to allow the DOM to identify and access this modal; and **searchSetter**, which receives a state setter created using React's `useState` hook, for modifying state declared outside the scope of this component. It is used so that the texts inserted in the `Input` contained in this component change this state of greater scope.
+`Menu` - a component used to display the menu if the browser used by the user has dimensions compatible with mobile devices or uses this type of devices. It has the following properties:
+> **name**, of type *string*, so that DOM can identify and access this modal; and **searchSetter**, which receives a state setter created with React's `useState` hook, to change the state declared outside the scope of this component. It is used so that the texts inserted into the `Input` contained in this component will change this state of the larger scope.
 > This component imports and uses others: `Input` and `Footer`.
 
-`Header` - a component that renders the header of all pages in the `app` subfolder, which has the following property:
-> **searchSetter**, which receives a state setter created using React's `useState` hook, for modifying the state declared outside the scope of this component. It is used so that the texts inserted in the `Input` contained in this component change this state of greater scope.
-> This component imports and uses others: `Logo`, `Menu`, `Button`, and `Input`.
+`Header` - a component that renders the header of all pages in the `app` subfolder and has the following property:
+> **searchSetter**, which receives a state setter created with React's `useState` hook to change the state declared outside the scope of this component. It is used so that the texts inserted into the `Input` contained in this component will change this state of the larger scope.
+> This component imports and uses others: `Logo`, `Menu`, `Button` and `Input`.
 
-`TagsWrapper` - component used so that the *admin* user can create and/or delete ingredients from a given dish when accessing the pages `app/Dish/New` and `app/Dish/Edit`. It has the following properties:
-> **className**, of type *string*, which allows the identification and access of this component in the DOM; **label**, of type *string*, used to identify this component for the user; **tags**, of type *string[]*, which receives an array of tags to be rendered; and **tagsSetter**, which receives a state setter created using React's `useState` hook, to update state with scope greater than this component.
-> This component declares and makes use of another: `Tag`.
->> `Tag` - component used to render individually on the screen each tag present in the `TagsWrapper` component, which receives the following properties: **name**, of type *string*, to display the name of the ingredient on screen; **tagsSetter**, the same object received by `TagsWrapper`, which passes to all individual `Tags`, so that it is possible to update the state of scope greater than that of these components, to allow the creation or deletion of Ingredients.
+`TagsWrapper` - component used to allow the *admin* to create and/or delete ingredients for a specific dish when accessing the `app/Dish/New` and `app/Dish/Edit` pages. It has the following properties:
+> **className**, of type *string*, which is used to identify and access this component in the DOM; **label**, of type *string*, which is used to identify this component to the user; **tags**, of type *string[]*, which receives an array of tags to be rendered; and **tagsSetter**, which receives a state setter created with React's `useState` hook to update state with a larger scope than this component.
+> This component declares and uses another: `Tag`.
+>> `Tag` - component used to display each tag contained in the `TagsWrapper` component individually on the screen, and which has the following properties: **name**, of type *string*, to display the ingredient name on the screen; **tagsSetter**, the same object received from `TagsWrapper` and passed to all individual `Tags`, so that it is possible to update the status of the area larger than that of these components, to allow ingredient creation or deletion.
 
-`DishCardsWrapper` - component used to display dishes on the `app/Home` page, filtering dishes by category. This component has the following properties:
-> **category**, of type *string*, which renders the name of the dish category in question; **admin**, of type *boolean*, which serves to modify the style and options in dishes, depending on whether the user is *admin* or not; **dishesData**, of type *DishProps[]*, which receives the data of each dish in the form of an array of objects, so that each object corresponds to an individual letter, in the form of the `DishCard` component, to be explained below:
->> `DishCard` is a component for rendering each individual dish, which has the following properties: **admin**, of type *boolean*, which serves to customize the dish card depending on whether or not the user is *admin*; **dishData**, of type *DishProps*, which receives data from a dish itself, to be displayed; and **device**, of type *'desktop' | 'mobile'*, which also serves to stylize some aspects of the cymbal chart according to the dimensions of the device being used by the user.
-> This component imports and uses another: `Button`.
+`DishCardsWrapper` - component for displaying dishes on the `app/Home` page, filtering the dishes by categories. This component has the following properties:
+> **category**, of type *string*, which reflects the name of each dish category; **admin**, of type *boolean*, which is used to change the style and options in the dishes, depending on whether the user is *admin* or not; **dishesData**, of type *DishProps[]*, which receives the data of each dish in the form of an array of objects, so that each object corresponds to a single card, in the form of the `DishCard` component, explained below:
+>> `DishCard` is a component for representing each dish, which has the following properties: **admin**, of type *boolean*, which is used to customize the DishCard depending on whether the user is *admin* or not; **dishData**, of type *DishProps*, which receives data from a dish to display itself; and **device**, of type *'desktop' | 'mobile'*, which is also used to stylize some aspects of the `DishCard` according to the dimensions of the device used by the user.
+> This component imports and uses another component: `Button`.
 
-`SignOutModal` - component similar to `Modal` but with a specific function: asking the users, after some period, if they want to keep their current sessions open. The user is automatically logged out if it doesn't confirm within 60 seconds . It has the following properties:
-> **name**, of type *string*, to allow the identification and access of this component by the DOM; **message**, of type *string*, which displays the message of interest to the user; **userDecisionSetter**, which receives a state setter created using React's `useState` hook, for modifying state declared outside the scope of this component. It is this state that is modified depending on whether or not the user confirms;
-**modalOpenTracker**, of type *number*, to know the exact moment when this component was displayed to start counting the 60 seconds of waiting for a user reaction.
-> This component imports and uses another: `Button`.
+`SignOutModal` - a component similar to the `Modal` component, but with a special function: it asks the user after a certain time if he wants to keep his current session open. The user will be automatically logged out if he does not confirm this within 60 seconds. It has the following properties:
+> **name**, of type *string*, to allow identification and access to this component by DOM; **message**, of type *string*, which displays the message of interest to the user; **userDecisionSetter**, which receives a state setter created with React's `useState` hook to change the state declared outside the scope of this component. This state is changed depending on whether the user confirms or not; **modalOpenTracker**, to know the exact time this component was displayed to count the 60 seconds the application waits for a user response.
+> This component imports and uses another component: `Button`.
 
 ### How to run this project locally
 
-Presuming you already have `git` and `npm` on your local machine, you should follow these simple steps. First, go to the directory you are interested in and clone this repository:
+Presuming you already have `git` and `npm` on your local machine, you should follow these simple steps. First, change to the directory you are interested in and clone the repository:
 
 > `git clone https://github.com/victorsgb/food-explorer-frontend`
 
@@ -105,9 +141,41 @@ The application is expected to be running normally, in your default browser, rea
 
 ## Versão em português
 
+### Descrição do projeto
+
+Este é o desafio final do treinamento do [Programa Explorer da Rocketseat](https://www.rocketseat.com.br/explorer), que se trata da construção, a partir de [layout do Figma](https://www.figma.com/file/LOMJWIopGI0VwmAU9aT2YS/food-explorer-v2?node-id=5%3A980&t=ufciRiJWyCbfaa5Q-1), da aplicação Frontend Web usando as tecnologias do ecossistema [React](https://pt-br.reactjs.org/).
+
+O projeto se refere ao site de um restaurante fictício, denominado FoodExplorer, onde é possível navegar como administrador, cadastrando, editando e deletando pratos, bem como navegar como usuário comum, fazendo pedidos. Este projeto faz requisições para uma API própria, cuja construção também faz parte deste desafio, cujo repositório se acha [hospedado no Github também](https://github.com/victorsgb/food-explorer-backend).
+
+Todos os requisitos obrigatórios do desafio foram atendidos, e, como milha extra, foram incluídas as seguintes funcionalidades:
+
+- Modais de exibição de **mensagens de erro do servidor**;
+- Modais de **feedback visual ou confirmação** por parte do administrador ao cadastrar, editar e/ou deletar pratos;
+- Modal de **validação de senha** ao cadastrar novo usuário para auxiliar na criação de senhas fortes;
+- **Componente de carregamento** nos botões para fornecer feedback visual aos usuários enquanto aguardam respostas do servidor;
+- **Página de erro 404** a ser exibida caso o usuário acesse rotas proibidas ou inexistentes.
+
+**O que ainda está por vir:**
+
+- Toda a funcionalidade de adição/remoção de pedidos no carrinho de compras
+- Página de pagamento
+
+### Dependências
+
+Este projeto contém as seguintes dependências:
+
+- **[`axios`](https://www.npmjs.com/package/axios), [compatível com a versão](https://stackoverflow.com/questions/22343224/whats-the-difference-between-tilde-and-caret-in-package-json) *1.3.2***: usado para comunicação com o servidor;
+- **[`react`](https://reactjs.org/), compatível com a versão *18.2.0***: usado para criar interfaces de usuário interativas e aplicativos da web de forma rápida e eficiente com significativamente menos código do que com o JavaScript padrão;
+- **[`react-dom`](https://www.npmjs.com/package/react-dom), compatível com a versão *18.2.0***: fornece métodos específicos da DOM que podem ser usados ​​no nível superior de um aplicativo da Web para permitir uma maneira eficiente de gerenciar elementos DOM da página;
+- **[`react-icons`](https://www.npmjs.com/package/react-icons), compatível com a versão *4.7.1***: que disponibiliza alguns dos ícones usados neste projeto;
+- **[`react-router-dom`](https://www.npmjs.com/package/react-router-dom), compatível com a versão *6.8.1***: que provê as rotas da aplicação, a depender do usuário estar ou não autenticado;
+- **[`react-scripts`](https://www.npmjs.com/package/react-scripts), versão *5.0.1***: provê scripts para executar as ferramentas de construção necessárias para transformar a sintaxe do React JSX em JavaScript simples programaticamente;
+- **[`react-simply-carousel`](https://www.npmjs.com/package/react-simply-carousel), compatível com a versão *8.5.1***: usado para construção do carousel de renderização dos pratos do restaurante fictício;
+- **[`styled-components`](https://www.npmjs.com/package/styled-components), compatível com a versão *5.3.6***: usado na estilização de todos os componentes deste projeto.
+
 ### Deploy do projeto
 
-O deploy do projeto foi realizado na [Netlify](https://www.netlify.com/) e você pode acessá-lo por este [link](https://food-explorer-frontend.netlify.app/). Você será encaminhado para a página de SignIn, e de lá poderá se deslocar à página de SignUp. Porém, como não é possível ainda criar contas de admin pela plataforma, use essas credenciais caso queira acessar o projeto como tal: **email**: admin@email.com e **senha**: Qwerty-12345.
+O deploy do projeto foi realizado na [Netlify](https://www.netlify.com/) e você pode acessá-lo por este [link](https://food-explorer-frontend.netlify.app/). Você será encaminhado para a página de SignIn, e de lá poderá se deslocar à página de SignUp. Porém, como não é possível ainda criar contas de admin pela plataforma, use essas credenciais caso queira acessar o projeto como tal: **email**: admin@email.com e **senha**: Qwerty-12345. *Ao fazer a primeira requisição ao servidor, é possível que haja uma demora maior que o normal, pois este fica inativo após certo tempo sem uso.*
 
 ### Estrutura do projeto
 
