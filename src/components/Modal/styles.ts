@@ -3,13 +3,14 @@ import styled from 'styled-components';
 export const Container = styled.dialog`
 
   margin: 0 auto;
-  padding: 3% 3% 0% 3%;
+  padding: 1% 2% 0 2%;
   position: absolute;
   top: 20%;
   left: 50%;
   transform: translate(-50%, 0);
 
   font-size: 1.6rem;
+  text-align: center;
   
   border: none;
   border-radius: 5px;

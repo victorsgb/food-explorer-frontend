@@ -13,7 +13,7 @@
 
 This is the final training challenge in the [Rocketseat Explorer program](https://www.rocketseat.com.br/explorer), which involves building a front-end web application using the technologies of the [React ecosystem](https://pt-br.reactjs.org/) starting from a [Figma layout](https://www.figma.com/file/LOMJWIopGI0VwmAU9aT2YS/food-explorer-v2?node-id=5%3A980&t=ufciRiJWyCbfaa5Q-1).
 
-The project refers to the website of a fictional restaurant called FoodExplorer, where you can log in as an administrator, edit and delete dishes, but also as a normal user placing orders. This project makes requests for its own API, whose construction is also part of this challenge and whose repository is also [hosted on Github](https://github.com/victorsgb/food-explorer-backend).
+The project refers to the website of a fictional restaurant called FoodExplorer, where you can log in as an administrator, edit and delete dishes, but also as a normal user placing orders. This project makes requests to its own API, whose construction is also part of this challenge and whose repository is also [hosted on Github](https://github.com/victorsgb/food-explorer-backend).
 
 All the mandatory requirements of the challenge have been met, and as an extra, the following features have been added:
 
